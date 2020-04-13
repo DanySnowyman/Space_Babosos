@@ -10,18 +10,18 @@ var shooting_frame_lenght = 0.5
 func _ready():
 	$BabosoShooting.visible = false
 	add_to_group("total_babosos")
-	add_to_group("total_basic_babosos")
+	add_to_group("total_laser_babosos")
 	$AnimationPlayer.play("Idle")
 
 
 func _on_Baboso_get_hit_by_Player_laser(area_id, area, area_shape, self_shape):
-	emit_signal("Baboso_basic_defeated")
+	emit_signal("Baboso_laser_defeated")
 	$AnimationPlayer.play("death")
 	$HurtSound.play()
 		
 
 func baboso_shoot():
-	print("Baboso basic works")
+	print("Baboso laser works")
 	$BabosoShooting.visible = true
 	$Sprite.visible = false
 	$ShootSound.play()

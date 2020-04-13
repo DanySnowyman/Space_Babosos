@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://babosos/Space_baboso_basic.gd" type="Script" id=1]
+[ext_resource path="res://babosos/Space_baboso_laser.gd" type="Script" id=1]
 [ext_resource path="res://gfx/Space_baboso_basic.png" type="Texture" id=2]
 [ext_resource path="res://sounds/Baboso_basic_hurt.wav" type="AudioStream" id=4]
 [ext_resource path="res://sounds/Baboso_basic_shoot.wav" type="AudioStream" id=6]
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 6, 7 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 2, 3, 4 ]
+"values": [ 8, 9, 10 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -55,7 +55,7 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 6 )
 
-[node name="Space_baboso_basic" type="Area2D" groups=[
+[node name="Space_baboso_laser" type="Area2D" groups=[
 "total_babosos",
 ]]
 position = Vector2( 80, 48 )
@@ -67,10 +67,11 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+z_as_relative = false
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 6
-frame = 2
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )
@@ -84,7 +85,7 @@ visible = false
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 6
-frame = 5
+frame = 11
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
