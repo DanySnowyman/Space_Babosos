@@ -57,7 +57,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 6.0006, 3.47641 )
+extents = Vector2( 7.41902, 5.8291 )
 
 [node name="Player" type="Area2D"]
 position = Vector2( 160, 160 )
@@ -65,9 +65,6 @@ z_index = 1
 input_pickable = false
 collision_mask = 10
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 Laser = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -82,7 +79,7 @@ anims/left = SubResource( 3 )
 anims/right = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 0 )
+position = Vector2( 0, 1.14447 )
 shape = SubResource( 5 )
 
 [node name="ShootCadence" type="Timer" parent="."]

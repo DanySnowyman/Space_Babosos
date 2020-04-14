@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://gfx/Baboso_shoot1.png" type="Texture" id=1]
-[ext_resource path="res://gfx/Baboso_shoot2.png" type="Texture" id=2]
-[ext_resource path="res://Baboso_shoot.gd" type="Script" id=3]
+[ext_resource path="res://gfx/Baboso_laser1.png" type="Texture" id=1]
+[ext_resource path="res://gfx/Baboso_laser2.png" type="Texture" id=2]
+[ext_resource path="res://babosos/Baboso_laser.gd" type="Script" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -13,24 +13,21 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 3, 3 )
+extents = Vector2( 3.00499, 13.9988 )
 
-[node name="Baboso_shoot" type="Area2D"]
+[node name="Baboso_laser" type="Area2D"]
 collision_layer = 8
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 frame = 1
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1.01216 )
 shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-visible = false
-position = Vector2( 2.38419e-07, 2.38419e-07 )
+position = Vector2( 2.38419e-07, -12.0611 )
 scale = Vector2( 0.5, 0.5 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
