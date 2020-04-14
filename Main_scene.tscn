@@ -26,4 +26,12 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="BulletPause" type="Timer" parent="BabososFormation"]
+wait_time = 0.2
+one_shot = true
+
+[node name="LaserPause" type="Timer" parent="BabososFormation"]
+wait_time = 0.6
+one_shot = true
+
 [node name="Tween" type="Tween" parent="BabososFormation"]

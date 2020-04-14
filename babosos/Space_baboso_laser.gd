@@ -15,6 +15,7 @@ func _ready():
 
 
 func _on_Baboso_get_hit_by_Player_laser(area_id, area, area_shape, self_shape):
+	$BabosoShooting.visible = false
 	emit_signal("Baboso_laser_defeated")
 	$AnimationPlayer.play("death")
 	$HurtSound.play()
@@ -33,7 +34,7 @@ func _process(delta):
 		timer += delta
 		
 		if timer >= shooting_frame_lenght:
-			$BabosoShooting.visible = false
 			$Sprite.visible = true
+			$BabosoShooting.visible = false
 			timer_enabled = false
 			timer = 0

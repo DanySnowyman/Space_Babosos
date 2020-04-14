@@ -6,7 +6,7 @@ export (PackedScene) var Baboso_Laser
 export (PackedScene) var Bullet
 export (PackedScene) var Laser
 
-
+var formation_can_move = true
 var velocity = Vector2(1, 0)
 var speed = 10
 
@@ -75,8 +75,9 @@ func set_pos(baboso_type, position):
 
 
 func move_formation(delta):
-	position += (velocity * speed) * delta
-
+	if formation_can_move == true:
+		position += (velocity * speed) * delta
+	else: pass
 
 func if_border_reached():
 	for baboso in get_tree().get_nodes_in_group("total_babosos"):
@@ -113,10 +114,16 @@ func baboso_basic_shoot():
 		var next_shooting_baboso = basic_babosos[randi() % basic_babosos.size()]
 		var bullet = Bullet.instance()
 		if $BabosoBasicCadence.is_stopped():
+			$BulletPause.start()
+			formation_can_move = false
 			next_shooting_baboso.baboso_shoot()
 			bullet.position = next_shooting_baboso.global_position
 			get_parent().add_child(bullet)
 			$BabosoBasicCadence.start()
+	
+	if $BulletPause.is_stopped() && $LaserPause.is_stopped():
+		formation_can_move = true
+		
 			
 
 func baboso_laser_shoot():
@@ -125,10 +132,17 @@ func baboso_laser_shoot():
 		var next_shooting_baboso = laser_babosos[randi() % laser_babosos.size()]
 		var laser = Laser.instance()
 		if $BabosoLaserCadence.is_stopped():
+			$LaserPause.start()
+			formation_can_move = false
 			next_shooting_baboso.baboso_shoot()
 			laser.position = next_shooting_baboso.global_position
+			laser.position.y -= 13
 			get_parent().add_child(laser)
 			$BabosoLaserCadence.start()
+			
+	if $LaserPause.is_stopped() && $BulletPause.is_stopped():
+		formation_can_move = true
+			
 
 
 func _process(delta):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Baboso_laser.png-1ee4b3262007ce4b42ec7a6a8c9ed739.stex"
+path="res://.import/Baboso_laser-mask.png-6f97727e9d8f24c3ada566caf2e26236.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gfx/Baboso_laser.png"
-dest_files=[ "res://.import/Baboso_laser.png-1ee4b3262007ce4b42ec7a6a8c9ed739.stex" ]
+source_file="res://gfx/Baboso_laser-mask.png"
+dest_files=[ "res://.import/Baboso_laser-mask.png-6f97727e9d8f24c3ada566caf2e26236.stex" ]
 
 [params]
 
