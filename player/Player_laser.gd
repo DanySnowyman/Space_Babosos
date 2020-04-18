@@ -9,12 +9,15 @@ func _process(delta):
 	
 	
 func _on_VisibilityNotifier2D_screen_exited():
-	print("Bala borrada")
 	queue_free()
 
 
 func _on_Laser_hits_Baboso(area_id, area, area_shape, self_shape):
 	queue_free()
+
+
+func im_the_laser():
+	pass
 
 
 

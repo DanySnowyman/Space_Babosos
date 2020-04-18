@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://babosos/Space_baboso_laser.gd" type="Script" id=1]
+[ext_resource path="res://babosos/Space_baboso_fiery.gd" type="Script" id=1]
 [ext_resource path="res://gfx/Space_baboso_basic.png" type="Texture" id=2]
-[ext_resource path="res://sounds/Baboso_laser_sound.wav" type="AudioStream" id=3]
+[ext_resource path="res://gfx/Baboso_fiery_attack.png" type="Texture" id=3]
 [ext_resource path="res://sounds/Baboso_basic_hurt.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/Baboso_bullet_shoot.wav" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -18,7 +19,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 6, 7 ]
+"values": [ 12, 13 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -35,36 +36,46 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 8, 9, 10 ]
+"values": [ 14, 15, 16 ]
 }
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 6 )
 
-[node name="Space_baboso_laser" type="Area2D" groups=[
+[sub_resource type="Animation" id=4]
+resource_name = "attack"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[node name="Space_baboso_fiery" type="Area2D" groups=[
 "total_babosos",
 ]]
 position = Vector2( 80, 48 )
 collision_layer = 2
-collision_mask = 21
+collision_mask = 5
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-z_as_relative = false
 texture = ExtResource( 2 )
+flip_h = true
 vframes = 4
 hframes = 6
-frame = 6
-
-[node name="BabosoShooting" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 2 )
-vframes = 4
-hframes = 6
-frame = 11
+frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )
@@ -77,14 +88,25 @@ shape = SubResource( 3 )
 stream = ExtResource( 4 )
 volume_db = -4.039
 
-[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -80, -48 )
-stream = ExtResource( 3 )
+stream = ExtResource( 6 )
 
-[node name="ShootFrameLenght" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-[connection signal="area_entered" from="." to="." method="_on_Space_baboso_laser_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_Space_baboso_laser_area_exited"]
+[node name="FieryInAction" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="AttackSprite" type="Sprite" parent="FieryInAction"]
+texture = ExtResource( 3 )
+hframes = 2
+frame = 1
+
+[node name="AttackAnimation" type="AnimationPlayer" parent="FieryInAction"]
+anims/attack = SubResource( 4 )
+
+[node name="AttackCollisionShape" type="CollisionShape2D" parent="FieryInAction"]
+shape = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="FieryInAction"]
+[connection signal="area_entered" from="." to="." method="_on_Space_baboso_fiery_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Space_baboso_fiery_area_exited"]
 [connection signal="area_shape_entered" from="." to="." method="_on_Baboso_get_hit_by_Player_laser"]
-[connection signal="timeout" from="ShootFrameLenght" to="." method="_on_ShootFrameLenght_timeout"]

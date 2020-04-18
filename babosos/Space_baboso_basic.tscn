@@ -37,22 +37,8 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 2, 3, 4 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
-}
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 8, 6 )
 
 [node name="Space_baboso_basic" type="Area2D" groups=[
@@ -70,21 +56,19 @@ __meta__ = {
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 6
-frame = 2
+
+[node name="BabosoShooting" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 6
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )
 anims/death = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
-
-[node name="BabosoShooting" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 2 )
-vframes = 4
-hframes = 6
-frame = 5
+shape = SubResource( 4 )
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
@@ -93,4 +77,10 @@ volume_db = -4.039
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -80, -48 )
 stream = ExtResource( 6 )
+
+[node name="ShootFrameLenght" type="Timer" parent="."]
+wait_time = 0.3
+[connection signal="area_entered" from="." to="." method="_on_Space_baboso_basic_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Space_baboso_basic_area_exited"]
 [connection signal="area_shape_entered" from="." to="." method="_on_Baboso_get_hit_by_Player_laser"]
+[connection signal="timeout" from="ShootFrameLenght" to="." method="_on_ShootFrameLenght_timeout"]

@@ -3,19 +3,22 @@ extends Node2D
 onready var tween = $Tween
 export (PackedScene) var Baboso_Basic
 export (PackedScene) var Baboso_Laser
+export (PackedScene) var Baboso_Fiery
 export (PackedScene) var Bullet
 export (PackedScene) var Laser
 
 var formation_can_move = true
+var formation_getting_down = false
 var velocity = Vector2(1, 0)
 var speed = 10
 
 
 func _ready():
-	position = Vector2(24, 24)
+	position = Vector2(24, 16)
 	create_formation()
 	$BabosoBasicCadence.start()
 	$BabosoLaserCadence.start()
+	$BabosoFieryCadence.start()
 
 
 func create_formation():
@@ -26,50 +29,52 @@ func create_formation():
 	set_pos("laser", Vector2(0, row_spacing))
 	set_pos("basic", Vector2(0, row_spacing * 2))
 	set_pos("laser", Vector2(0, row_spacing * 3))
-	set_pos("basic", Vector2(0, row_spacing * 4))
+	set_pos("fiery", Vector2(0, row_spacing * 4))
 	#Column 2
 	set_pos("basic", Vector2(column_spacing, 0))
 	set_pos("laser", Vector2(column_spacing, row_spacing))
 	set_pos("basic", Vector2(column_spacing, row_spacing * 2))
 	set_pos("laser", Vector2(column_spacing, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing, row_spacing * 4))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 4))
 	#Column 3
 	set_pos("basic", Vector2(column_spacing * 2, 0))
 	set_pos("laser", Vector2(column_spacing * 2, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 2))
 	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 4))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 4))
 	#Column 4
 	set_pos("basic", Vector2(column_spacing * 3, 0))
 	set_pos("laser", Vector2(column_spacing * 3, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 2))
 	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 4))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 4))
 	#Column 5
 	set_pos("basic", Vector2(column_spacing * 4, 0))
 	set_pos("laser", Vector2(column_spacing * 4, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 2))
 	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 4))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 4))
 	#Column 6
 	set_pos("basic", Vector2(column_spacing * 5, 0))
 	set_pos("laser", Vector2(column_spacing * 5, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 2))
 	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 4))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 4))
 	#Column 7
 	set_pos("basic", Vector2(column_spacing * 6, 0))
 	set_pos("laser", Vector2(column_spacing * 6, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
 	set_pos("laser", Vector2(column_spacing * 6, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 4))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 4))
 	
 	
 func set_pos(baboso_type, position):
 	if baboso_type == "basic":
 		baboso_type = Baboso_Basic.instance()
 	elif baboso_type == "laser":
-			baboso_type = Baboso_Laser.instance()
+		baboso_type = Baboso_Laser.instance()
+	elif baboso_type == "fiery":
+		baboso_type = Baboso_Fiery.instance()
 	baboso_type.position = position
 	add_child(baboso_type)
 
@@ -84,6 +89,7 @@ func if_border_reached():
 		if left_border_reached(baboso) or right_border_reached(baboso):
 			get_down()
 			velocity = -velocity
+			speed += 5
 			break
 
 
@@ -102,10 +108,12 @@ func right_border_reached(baboso):
 
 
 func get_down():
+	formation_getting_down = true
 	tween.interpolate_property(self, "position",
-	position, position + Vector2(0, 16), 0.5,
-	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			position, position + Vector2(0, 16), 0.5,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
+	formation_getting_down = false
 
 
 func baboso_basic_shoot():
@@ -113,7 +121,7 @@ func baboso_basic_shoot():
 	if basic_babosos.size() >= 1:
 		var next_shooting_baboso = basic_babosos[randi() % basic_babosos.size()]
 		var bullet = Bullet.instance()
-		if $BabosoBasicCadence.is_stopped():
+		if $BabosoBasicCadence.is_stopped() && formation_getting_down == false:
 			$BulletPause.start()
 			formation_can_move = false
 			next_shooting_baboso.baboso_shoot()
@@ -124,14 +132,14 @@ func baboso_basic_shoot():
 	if $BulletPause.is_stopped() && $LaserPause.is_stopped():
 		formation_can_move = true
 		
-			
-
+		
 func baboso_laser_shoot():
 	var laser_babosos = get_tree().get_nodes_in_group("total_laser_babosos")
-	if laser_babosos.size() >= 1:
+	var laser_babosos_unready = get_tree().get_nodes_in_group("no_ready_members")
+	if laser_babosos.size() >= 1 and laser_babosos_unready.size() == 0:
 		var next_shooting_baboso = laser_babosos[randi() % laser_babosos.size()]
 		var laser = Laser.instance()
-		if $BabosoLaserCadence.is_stopped():
+		if $BabosoLaserCadence.is_stopped() && formation_getting_down == false:
 			$LaserPause.start()
 			formation_can_move = false
 			next_shooting_baboso.baboso_shoot()
@@ -144,9 +152,18 @@ func baboso_laser_shoot():
 		formation_can_move = true
 			
 
+func baboso_fiery_attack():
+	var fiery_target = get_parent().get_node("Player").get_global_position()
+	var fiery_babosos = get_tree().get_nodes_in_group("total_fiery_babosos")
+	if fiery_babosos.size() >= 1:
+		var next_attacking_fiery = fiery_babosos[randi() % fiery_babosos.size()]
+		if $BabosoFieryCadence.is_stopped() && formation_getting_down == false:
+			next_attacking_fiery.fiery_attack(fiery_target)
+			$BabosoFieryCadence.start()
 
 func _process(delta):
 	move_formation(delta)
 	if_border_reached()
 	baboso_basic_shoot()
 	baboso_laser_shoot()
+	baboso_fiery_attack()

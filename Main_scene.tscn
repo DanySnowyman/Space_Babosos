@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://player/Player_ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://babosos/Babosos_formation.gd" type="Script" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://babosos/Baboso_laser.tscn" type="PackedScene" id=4]
 [ext_resource path="res://babosos/Space_baboso_laser.tscn" type="PackedScene" id=5]
 [ext_resource path="res://babosos/Baboso_bullet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://LaserExclusionArea.gd" type="Script" id=7]
+[ext_resource path="res://babosos/Space_baboso_fiery.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 19, 90 )
 
 [node name="Main" type="Node2D"]
 
@@ -15,15 +20,20 @@
 script = ExtResource( 2 )
 Baboso_Basic = ExtResource( 3 )
 Baboso_Laser = ExtResource( 5 )
+Baboso_Fiery = ExtResource( 8 )
 Bullet = ExtResource( 6 )
 Laser = ExtResource( 4 )
 
 [node name="BabosoBasicCadence" type="Timer" parent="BabososFormation"]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="BabosoLaserCadence" type="Timer" parent="BabososFormation"]
-wait_time = 5.0
+wait_time = 4.0
+one_shot = true
+
+[node name="BabosoFieryCadence" type="Timer" parent="BabososFormation"]
+wait_time = 7.0
 one_shot = true
 
 [node name="BulletPause" type="Timer" parent="BabososFormation"]
@@ -35,3 +45,22 @@ wait_time = 0.6
 one_shot = true
 
 [node name="Tween" type="Tween" parent="BabososFormation"]
+
+[node name="NoLasersAllowedArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource( 7 )
+
+[node name="NoLasersAreaLeft" type="CollisionShape2D" parent="NoLasersAllowedArea"]
+position = Vector2( 19, 90 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NoLasersAreaRight" type="CollisionShape2D" parent="NoLasersAllowedArea"]
+position = Vector2( 301, 90 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}

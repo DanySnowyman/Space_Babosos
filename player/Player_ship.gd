@@ -6,6 +6,8 @@ var speed = 130
 var can_control = false
 
 func _ready():
+	add_to_group("Player")
+	self.position = Vector2(160, 160)
 	screen_size = get_viewport_rect().size
 	can_control = true
 	$ShipExplosion.visible = false
@@ -58,7 +60,5 @@ func _on_Player_area_shape_entered(area_id, area, area_shape, self_shape):
 	$ShipExplosion.visible = true
 	$AnimationPlayer.play("explosion")
 	$ExplosionSound.play()
-	$Audio
 	yield($AnimationPlayer, "animation_finished")
 	queue_free()
-
