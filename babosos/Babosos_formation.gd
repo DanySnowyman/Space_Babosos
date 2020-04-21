@@ -161,9 +161,12 @@ func baboso_fiery_attack():
 			next_attacking_fiery.fiery_attack(fiery_target)
 			$BabosoFieryCadence.start()
 
+
 func _process(delta):
 	move_formation(delta)
 	if_border_reached()
 	baboso_basic_shoot()
 	baboso_laser_shoot()
 	baboso_fiery_attack()
+	
+	

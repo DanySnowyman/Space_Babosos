@@ -15,6 +15,7 @@ func _ready():
 func _on_Baboso_get_hit_by_Player_laser(area_id, area, area_shape, self_shape):
 	if area.has_method("im_the_laser"):
 		if $ShootSound.is_playing() == true:
+			$CollisionShape2D.disabled = true
 			yield(baboso_shoot(), "completed")
 			_on_ShootFrameLenght_timeout()
 			$AnimationPlayer.play("death")
@@ -23,6 +24,7 @@ func _on_Baboso_get_hit_by_Player_laser(area_id, area, area_shape, self_shape):
 			yield($AnimationPlayer, "animation_finished")
 			queue_free()
 		else:
+			$CollisionShape2D.disabled = true
 			_on_ShootFrameLenght_timeout()
 			$AnimationPlayer.play("death")
 			$HurtSound.play()

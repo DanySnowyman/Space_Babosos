@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://babosos/Space_baboso_fiery.gd" type="Script" id=1]
 [ext_resource path="res://gfx/Space_baboso_basic.png" type="Texture" id=2]
@@ -59,6 +59,37 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "death_on_attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "retreat"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+
 [node name="Space_baboso_fiery" type="Area2D" groups=[
 "total_babosos",
 ]]
@@ -71,11 +102,11 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
-flip_h = true
 vframes = 4
 hframes = 6
-frame = 12
+frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )
@@ -93,15 +124,19 @@ position = Vector2( -80, -48 )
 stream = ExtResource( 6 )
 
 [node name="FieryInAction" type="Area2D" parent="."]
+visible = false
 collision_mask = 5
 
 [node name="AttackSprite" type="Sprite" parent="FieryInAction"]
 texture = ExtResource( 3 )
-hframes = 2
-frame = 1
+offset = Vector2( 0, -4 )
+hframes = 7
+frame = 6
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="FieryInAction"]
 anims/attack = SubResource( 4 )
+anims/death_on_attack = SubResource( 6 )
+anims/retreat = SubResource( 5 )
 
 [node name="AttackCollisionShape" type="CollisionShape2D" parent="FieryInAction"]
 shape = SubResource( 3 )
@@ -109,4 +144,5 @@ shape = SubResource( 3 )
 [node name="Tween" type="Tween" parent="FieryInAction"]
 [connection signal="area_entered" from="." to="." method="_on_Space_baboso_fiery_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Space_baboso_fiery_area_exited"]
-[connection signal="area_shape_entered" from="." to="." method="_on_Baboso_get_hit_by_Player_laser"]
+[connection signal="area_shape_entered" from="." to="." method="_on_Baboso_get_hit_by_laser"]
+[connection signal="area_shape_entered" from="FieryInAction" to="." method="_on_FieryInAction_get_hit_by_laser"]

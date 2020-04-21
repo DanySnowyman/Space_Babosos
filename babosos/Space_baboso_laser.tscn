@@ -57,7 +57,7 @@ z_as_relative = false
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 6
-frame = 6
+frame = 10
 
 [node name="BabosoShooting" type="Sprite" parent="."]
 visible = false
