@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://babosos/Space_baboso_fiery.gd" type="Script" id=1]
 [ext_resource path="res://gfx/Space_baboso_basic.png" type="Texture" id=2]
 [ext_resource path="res://gfx/Baboso_fiery_attack.png" type="Texture" id=3]
 [ext_resource path="res://sounds/Baboso_basic_hurt.wav" type="AudioStream" id=4]
-[ext_resource path="res://sounds/Baboso_bullet_shoot.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/Baboso_fiery_attack.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/Baboso_fiery_fails.wav" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -59,7 +60,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "death_on_attack"
 length = 0.3
 tracks/0/type = "value"
@@ -75,8 +76,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "retreat"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("AttackSprite:frame")
 tracks/0/interp = 1
@@ -102,11 +102,10 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 6
-frame = 16
+frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )
@@ -121,7 +120,12 @@ volume_db = -4.039
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -80, -48 )
+stream = ExtResource( 5 )
+volume_db = -4.289
+
+[node name="FailSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -4.039
 
 [node name="FieryInAction" type="Area2D" parent="."]
 visible = false
@@ -129,14 +133,12 @@ collision_mask = 5
 
 [node name="AttackSprite" type="Sprite" parent="FieryInAction"]
 texture = ExtResource( 3 )
-offset = Vector2( 0, -4 )
 hframes = 7
-frame = 6
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="FieryInAction"]
 anims/attack = SubResource( 4 )
-anims/death_on_attack = SubResource( 6 )
-anims/retreat = SubResource( 5 )
+anims/death_on_attack = SubResource( 5 )
+anims/retreat = SubResource( 6 )
 
 [node name="AttackCollisionShape" type="CollisionShape2D" parent="FieryInAction"]
 shape = SubResource( 3 )

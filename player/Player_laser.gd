@@ -12,7 +12,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 
-func _on_Laser_hits_Baboso(area_id, area, area_shape, self_shape):
+func _on_Laser_hits_Baboso(_area_id, _area, _area_shape, _self_shape):
 	queue_free()
 
 

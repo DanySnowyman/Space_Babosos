@@ -4,10 +4,8 @@ onready var tween = $FieryInAction/Tween
 
 var is_retreating = false
 var velocity = Vector2()
-var retreating_speed = 60
+var retreating_speed = 40
 var actual_fiery_position = Vector2()
-
-signal Baboso_fiery_defeated
 
 
 func _ready():
@@ -19,25 +17,22 @@ func _ready():
 	$AnimationPlayer.play("Idle")
 
 
-func _on_Baboso_get_hit_by_laser(area_id, area, area_shape, self_shape):
+func _on_Baboso_get_hit_by_laser(_area_id, area, _area_shape, _self_shape):
 	if area.has_method("im_the_laser"):
-		$CollisionShape2D.disabled = true
 		$AnimationPlayer.play("death")
 		$HurtSound.play()
-		emit_signal("Baboso_fiery_defeated")
+		get_tree().call_group("HUD", "add_score", "FIERY")
 		yield($AnimationPlayer, "animation_finished")
 		queue_free()
 		
 
-func _on_FieryInAction_get_hit_by_laser(area_id, area, area_shape, self_shape):
+func _on_FieryInAction_get_hit_by_laser(_area_id, area, _area_shape, _self_shape):
 	if area.has_method("im_the_laser"):
 		tween.stop_all()
 		is_retreating = false
-		$CollisionShape2D.disabled = true
-		$FieryInAction/AttackCollisionShape.disabled = true
 		$FieryInAction/AttackAnimation.play("death_on_attack")
 		$HurtSound.play()
-		emit_signal("Baboso_fiery_defeated")
+		get_tree().call_group("HUD", "add_score", "FIERY")
 		yield($FieryInAction/AttackAnimation, "animation_finished")
 		queue_free()
 	
@@ -45,6 +40,7 @@ func _on_FieryInAction_get_hit_by_laser(area_id, area, area_shape, self_shape):
 func fiery_attack(player_pos):
 	var target = Vector2()
 	target = player_pos
+	$AttackSound.play()
 	$Sprite.visible = false
 	$CollisionShape2D.disabled = true
 	$FieryInAction.visible = true
@@ -58,6 +54,8 @@ func fiery_attack(player_pos):
 	tween.start()
 	yield(tween, "tween_completed")
 	is_retreating = true
+	$AttackSound.stop()
+	$FailSound.play()
 	
 	
 func fiery_retreated():

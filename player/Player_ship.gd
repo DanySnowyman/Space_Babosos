@@ -11,6 +11,22 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	can_control = true
 	$ShipExplosion.visible = false
+	
+
+func player_reset():
+	$ShipExplosion.visible = false
+	$CollisionShape2D.disabled = true
+	self.position = Vector2(160, 160)
+	can_control = true
+	for n in range (5):
+		$Sprite.visible = true
+		yield(get_tree().create_timer(0.1), "timeout")
+		$Sprite.visible = false
+		yield(get_tree().create_timer(0.1), "timeout")
+	$Sprite.visible = true
+	$CollisionShape2D.disabled = false
+	
+	
 
 func _process(delta):
 	var velocity = Vector2()
@@ -54,11 +70,12 @@ func _process(delta):
 			$ShootCadence.start()
 
 
-func _on_Player_area_shape_entered(area_id, area, area_shape, self_shape):
+func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
 	can_control = false
 	$Sprite.visible = false
 	$ShipExplosion.visible = true
 	$AnimationPlayer.play("explosion")
 	$ExplosionSound.play()
 	yield($AnimationPlayer, "animation_finished")
-	queue_free()
+	$ShipExplosion.visible = false
+	get_tree().call_group("HUD", "substract_lives")

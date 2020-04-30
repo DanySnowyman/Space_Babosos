@@ -4,6 +4,7 @@ onready var tween = $Tween
 export (PackedScene) var Baboso_Basic
 export (PackedScene) var Baboso_Laser
 export (PackedScene) var Baboso_Fiery
+export (PackedScene) var Baboso_Heavy
 export (PackedScene) var Bullet
 export (PackedScene) var Laser
 
@@ -28,43 +29,43 @@ func create_formation():
 	set_pos("basic", Vector2(0, 0))
 	set_pos("laser", Vector2(0, row_spacing))
 	set_pos("basic", Vector2(0, row_spacing * 2))
-	set_pos("laser", Vector2(0, row_spacing * 3))
+	set_pos("heavy", Vector2(0, row_spacing * 3))
 	set_pos("fiery", Vector2(0, row_spacing * 4))
 	#Column 2
 	set_pos("basic", Vector2(column_spacing, 0))
 	set_pos("laser", Vector2(column_spacing, row_spacing))
 	set_pos("basic", Vector2(column_spacing, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing, row_spacing * 4))
 	#Column 3
 	set_pos("basic", Vector2(column_spacing * 2, 0))
 	set_pos("laser", Vector2(column_spacing * 2, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 4))
 	#Column 4
 	set_pos("basic", Vector2(column_spacing * 3, 0))
 	set_pos("laser", Vector2(column_spacing * 3, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 3, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 4))
 	#Column 5
 	set_pos("basic", Vector2(column_spacing * 4, 0))
 	set_pos("laser", Vector2(column_spacing * 4, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 4))
 	#Column 6
 	set_pos("basic", Vector2(column_spacing * 5, 0))
 	set_pos("laser", Vector2(column_spacing * 5, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 5, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 4))
 	#Column 7
 	set_pos("basic", Vector2(column_spacing * 6, 0))
 	set_pos("laser", Vector2(column_spacing * 6, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 4))
 	
 	
@@ -75,6 +76,8 @@ func set_pos(baboso_type, position):
 		baboso_type = Baboso_Laser.instance()
 	elif baboso_type == "fiery":
 		baboso_type = Baboso_Fiery.instance()
+	elif baboso_type == "heavy":
+		baboso_type = Baboso_Heavy.instance()
 	baboso_type.position = position
 	add_child(baboso_type)
 
@@ -83,6 +86,7 @@ func move_formation(delta):
 	if formation_can_move == true:
 		position += (velocity * speed) * delta
 	else: pass
+
 
 func if_border_reached():
 	for baboso in get_tree().get_nodes_in_group("total_babosos"):
