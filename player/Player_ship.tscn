@@ -72,7 +72,6 @@ Laser = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 hframes = 5
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/center = SubResource( 1 )
@@ -96,7 +95,6 @@ volume_db = -14.136
 visible = false
 texture = ExtResource( 5 )
 hframes = 6
-frame = 5
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

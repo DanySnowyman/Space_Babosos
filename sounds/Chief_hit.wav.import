@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Chief_hit.wav-f040094e9f135bf2107360667e09c88d.sample"
+
+[deps]
+
+source_file="res://sounds/Chief_hit.wav"
+dest_files=[ "res://.import/Chief_hit.wav-f040094e9f135bf2107360667e09c88d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -12,4 +12,5 @@ func _process(delta):
 
 
 func _on_VisibilityNotifier2D_screen_exited():
+	yield(get_tree().create_timer(2),"timeout")
 	queue_free()

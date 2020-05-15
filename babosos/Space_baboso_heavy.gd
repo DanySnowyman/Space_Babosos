@@ -19,30 +19,34 @@ func _on_Baboso_get_hit_by_Player_laser(_area_id, area, _area_shape, _self_shape
 	if area.has_method("im_the_laser"):
 		if hits_left == 3:
 			hits_left -= 1
+			$ResistSound.play()
 			$Sprite.set_texture(damaged_texture)
 		elif hits_left == 2:
 			hits_left -= 1
+			$ResistSound.play()
 			$Sprite.set_texture(beaten_texture)
 		else:
 			$AnimationPlayer.play("death")
 			$HurtSound.play()
+			get_tree().call_group("HUD", "add_score", "HEAVY")
 			left_eye_eyection()
 			right_eye_eyection()
-			get_tree().call_group("HUD", "add_score", "HEAVY")
 			yield($AnimationPlayer, "animation_finished")
 			queue_free()
 			
 
 func left_eye_eyection():
 	var Eye = Heavy_eye.instance()
-	Eye.position = to_global($Sprite.position + Vector2(-4, 0))
+	yield(get_tree().create_timer(0.15), "timeout")
+	Eye.position = to_global($Sprite.position + Vector2(-4, -4))
 	Eye.velocity = Vector2(-1.5, -3)
 	get_parent().get_parent().add_child(Eye)
 
 
 func right_eye_eyection():
 	var Eye = Heavy_eye.instance()
-	Eye.position = to_global($Sprite.position + Vector2(4, 0))
+	yield(get_tree().create_timer(0.15), "timeout") 
+	Eye.position = to_global($Sprite.position + Vector2(4, -4))
 	Eye.velocity = Vector2(1.5, -3)
 	get_parent().get_parent().add_child(Eye)
 	
@@ -57,3 +61,5 @@ func _on_Space_baboso_heavy_area_exited(area):
 		remove_from_group("no_ready_members")
 
 
+func im_a_baboso():
+	pass

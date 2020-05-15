@@ -13,6 +13,8 @@ func _ready():
 	$ShipExplosion.visible = false
 	
 
+
+
 func player_reset():
 	$ShipExplosion.visible = false
 	$CollisionShape2D.disabled = true
@@ -70,7 +72,7 @@ func _process(delta):
 			$ShootCadence.start()
 
 
-func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
+func _on_Player_area_shape_entered(_area_id, area, _area_shape, _self_shape):
 	can_control = false
 	$Sprite.visible = false
 	$ShipExplosion.visible = true
@@ -78,4 +80,12 @@ func _on_Player_area_shape_entered(_area_id, _area, _area_shape, _self_shape):
 	$ExplosionSound.play()
 	yield($AnimationPlayer, "animation_finished")
 	$ShipExplosion.visible = false
-	get_tree().call_group("HUD", "substract_lives")
+	if area.has_method("im_a_baboso"):
+		get_tree().call_group("Main", "game_over")
+		can_control = false
+		$CollisionShape2D.disabled = true
+	else: get_tree().call_group("HUD", "substract_lives")
+	
+	
+func im_the_player():
+	pass

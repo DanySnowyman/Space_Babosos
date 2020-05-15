@@ -53,3 +53,5 @@ func _on_Space_baboso_laser_area_exited(area):
 		remove_from_group("no_ready_members")
 		
 
+func im_a_baboso():
+	pass

@@ -84,3 +84,7 @@ func _process(delta):
 		if (to_local($FieryInAction.position) - $Sprite.position).length() < 1:
 			is_retreating = false
 			fiery_retreated()
+
+
+func im_a_baboso():
+	pass

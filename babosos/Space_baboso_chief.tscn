@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://babosos/Space_baboso_heavy.gd" type="Script" id=1]
-[ext_resource path="res://gfx/Space_baboso_heavy_1.png" type="Texture" id=2]
-[ext_resource path="res://babosos/Heavy_eye.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sounds/Baboso_basic_hurt.wav" type="AudioStream" id=4]
-[ext_resource path="res://sounds/Baboso_heavy_resist.wav" type="AudioStream" id=5]
+[ext_resource path="res://babosos/Space_baboso_chief.gd" type="Script" id=1]
+[ext_resource path="res://gfx/Space_baboso_chief.png" type="Texture" id=2]
+[ext_resource path="res://sounds/Chief_alive.wav" type="AudioStream" id=3]
+[ext_resource path="res://sounds/Chief_hit.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -16,7 +16,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
@@ -40,11 +40,9 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 8, 6 )
+extents = Vector2( 16, 6 )
 
-[node name="Space_baboso_heavy" type="Area2D" groups=[
-"total_babosos",
-]]
+[node name="Space_baboso_chief" type="Area2D"]
 position = Vector2( 80, 48 )
 collision_layer = 2
 collision_mask = 5
@@ -52,7 +50,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-Heavy_eye = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -65,14 +62,13 @@ anims/death = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
 
-[node name="HurtSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+[node name="ChiefSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 volume_db = -4.039
 
-[node name="ResistSound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( -80, -48 )
-stream = ExtResource( 5 )
-volume_db = -1.072
-[connection signal="area_entered" from="." to="." method="_on_Space_baboso_heavy_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_Space_baboso_heavy_area_exited"]
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 [connection signal="area_shape_entered" from="." to="." method="_on_Baboso_get_hit_by_Player_laser"]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

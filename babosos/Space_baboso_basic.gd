@@ -27,6 +27,7 @@ func _on_Baboso_get_hit_by_Player_laser(_area_id, area, _area_shape, _self_shape
 			yield($AnimationPlayer, "animation_finished")
 			queue_free()
 
+
 func baboso_shoot():
 	$ShootFrameLenght.start()
 	$BabosoShooting.visible = true
@@ -50,3 +51,5 @@ func _on_Space_baboso_basic_area_exited(area):
 		remove_from_group("no_ready_members")
 
 
+func im_a_baboso():
+	pass

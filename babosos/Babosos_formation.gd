@@ -5,9 +5,11 @@ export (PackedScene) var Baboso_Basic
 export (PackedScene) var Baboso_Laser
 export (PackedScene) var Baboso_Fiery
 export (PackedScene) var Baboso_Heavy
+export (PackedScene) var Baboso_Chief
 export (PackedScene) var Bullet
 export (PackedScene) var Laser
 
+var is_game_over = false
 var formation_can_move = true
 var formation_getting_down = false
 var velocity = Vector2(1, 0)
@@ -15,11 +17,13 @@ var speed = 10
 
 
 func _ready():
+	randomize()
 	position = Vector2(24, 16)
 	create_formation()
 	$BabosoBasicCadence.start()
 	$BabosoLaserCadence.start()
 	$BabosoFieryCadence.start()
+	$ChiefAppearance.start(rand_range(16, 30))
 
 
 func create_formation():
@@ -166,11 +170,28 @@ func baboso_fiery_attack():
 			$BabosoFieryCadence.start()
 
 
+func baboso_chief_appear():
+	var chief = Baboso_Chief.instance()
+	var pos1 = Vector2 (-32, 12)
+	var pos2 = Vector2 (352, 12)
+	var pos_array = []
+	pos_array.append(pos1)
+	pos_array.append(pos2)
+	if $ChiefAppearance.is_stopped():
+		chief.position = pos_array[randi() % pos_array.size()]
+		get_parent().add_child(chief)
+		$ChiefAppearance.start(rand_range(16, 30))
+		
+
+func on_game_over():
+	is_game_over = true
+	tween.interpolate_property(self, "position", 1.0, 0.0, 3, Tween.TRANS_LINEAR, Tween.EASE_IN)
+
 func _process(delta):
-	move_formation(delta)
-	if_border_reached()
-	baboso_basic_shoot()
-	baboso_laser_shoot()
-	baboso_fiery_attack()
-	
-	
+	if is_game_over == false:
+		move_formation(delta)
+		if_border_reached()
+		baboso_basic_shoot()
+		baboso_laser_shoot()
+		baboso_fiery_attack()
+		baboso_chief_appear()
