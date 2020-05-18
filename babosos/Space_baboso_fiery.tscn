@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://babosos/Space_baboso_fiery.gd" type="Script" id=1]
 [ext_resource path="res://gfx/Space_baboso_basic.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://sounds/Baboso_basic_hurt.wav" type="AudioStream" id=4]
 [ext_resource path="res://sounds/Baboso_fiery_attack.wav" type="AudioStream" id=5]
 [ext_resource path="res://sounds/Baboso_fiery_fails.wav" type="AudioStream" id=6]
+[ext_resource path="res://babosos/FieryInAction.gd" type="Script" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -76,6 +77,24 @@ tracks/0/keys = {
 "values": [ 4, 5, 6 ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "laughing"
+length = 0.5
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 7, 8 ]
+}
+
 [sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("AttackSprite:frame")
@@ -102,6 +121,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 6
@@ -125,19 +145,22 @@ volume_db = -4.289
 
 [node name="FailSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -4.039
+volume_db = -5.913
 
 [node name="FieryInAction" type="Area2D" parent="."]
-visible = false
+collision_layer = 2
 collision_mask = 5
+script = ExtResource( 7 )
 
 [node name="AttackSprite" type="Sprite" parent="FieryInAction"]
 texture = ExtResource( 3 )
-hframes = 7
+hframes = 9
+frame = 3
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="FieryInAction"]
 anims/attack = SubResource( 4 )
 anims/death_on_attack = SubResource( 5 )
+anims/laughing = SubResource( 7 )
 anims/retreat = SubResource( 6 )
 
 [node name="AttackCollisionShape" type="CollisionShape2D" parent="FieryInAction"]
@@ -148,3 +171,4 @@ shape = SubResource( 3 )
 [connection signal="area_exited" from="." to="." method="_on_Space_baboso_fiery_area_exited"]
 [connection signal="area_shape_entered" from="." to="." method="_on_Baboso_get_hit_by_laser"]
 [connection signal="area_shape_entered" from="FieryInAction" to="." method="_on_FieryInAction_get_hit_by_laser"]
+[connection signal="area_shape_entered" from="FieryInAction" to="." method="_on_FieryInAction_hits_player"]

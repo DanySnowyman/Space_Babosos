@@ -7,23 +7,24 @@ export (PackedScene) var Baboso_Fiery
 export (PackedScene) var Baboso_Heavy
 export (PackedScene) var Baboso_Chief
 export (PackedScene) var Bullet
-export (PackedScene) var Laser
 
 var is_game_over = false
 var formation_can_move = true
 var formation_getting_down = false
 var velocity = Vector2(1, 0)
 var speed = 10
+var chief_appearances = 2
 
 
 func _ready():
+	add_to_group("BabososFormation")
 	randomize()
 	position = Vector2(24, 16)
 	create_formation()
-	$BabosoBasicCadence.start()
-	$BabosoLaserCadence.start()
-	$BabosoFieryCadence.start()
-	$ChiefAppearance.start(rand_range(16, 30))
+	$BabosoBasicCadence.start(rand_range(1.5, 4))
+	$BabosoLaserCadence.start(rand_range(4, 6))
+	$BabosoFieryCadence.start(rand_range(4, 6))
+	$ChiefAppearance.start(rand_range(20, 40))
 
 
 func create_formation():
@@ -31,45 +32,45 @@ func create_formation():
 	var row_spacing = 20
 	#Column 1
 	set_pos("basic", Vector2(0, 0))
-	set_pos("laser", Vector2(0, row_spacing))
-	set_pos("basic", Vector2(0, row_spacing * 2))
-	set_pos("heavy", Vector2(0, row_spacing * 3))
+	set_pos("basic", Vector2(0, row_spacing))
+	set_pos("laser", Vector2(0, row_spacing * 2))
+	set_pos("basic", Vector2(0, row_spacing * 3))
 	set_pos("fiery", Vector2(0, row_spacing * 4))
 	#Column 2
 	set_pos("basic", Vector2(column_spacing, 0))
-	set_pos("laser", Vector2(column_spacing, row_spacing))
-	set_pos("basic", Vector2(column_spacing, row_spacing * 2))
-	set_pos("heavy", Vector2(column_spacing, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing, row_spacing))
+	set_pos("laser", Vector2(column_spacing, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing, row_spacing * 4))
 	#Column 3
 	set_pos("basic", Vector2(column_spacing * 2, 0))
-	set_pos("laser", Vector2(column_spacing * 2, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 2))
-	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 4))
 	#Column 4
 	set_pos("basic", Vector2(column_spacing * 3, 0))
-	set_pos("laser", Vector2(column_spacing * 3, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 2))
-	set_pos("heavy", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 4))
 	#Column 5
 	set_pos("basic", Vector2(column_spacing * 4, 0))
-	set_pos("laser", Vector2(column_spacing * 4, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 2))
-	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 4))
 	#Column 6
 	set_pos("basic", Vector2(column_spacing * 5, 0))
-	set_pos("laser", Vector2(column_spacing * 5, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 2))
-	set_pos("heavy", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 4))
 	#Column 7
 	set_pos("basic", Vector2(column_spacing * 6, 0))
-	set_pos("laser", Vector2(column_spacing * 6, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
-	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 3))
 	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 4))
 	
 	
@@ -146,14 +147,10 @@ func baboso_laser_shoot():
 	var laser_babosos_unready = get_tree().get_nodes_in_group("no_ready_members")
 	if laser_babosos.size() >= 1 and laser_babosos_unready.size() == 0:
 		var next_shooting_baboso = laser_babosos[randi() % laser_babosos.size()]
-		var laser = Laser.instance()
 		if $BabosoLaserCadence.is_stopped() && formation_getting_down == false:
 			$LaserPause.start()
 			formation_can_move = false
 			next_shooting_baboso.baboso_shoot()
-			laser.position = next_shooting_baboso.global_position
-			laser.position.y -= 13
-			get_parent().add_child(laser)
 			$BabosoLaserCadence.start()
 			
 	if $LaserPause.is_stopped() && $BulletPause.is_stopped():
@@ -177,15 +174,23 @@ func baboso_chief_appear():
 	var pos_array = []
 	pos_array.append(pos1)
 	pos_array.append(pos2)
-	if $ChiefAppearance.is_stopped():
-		chief.position = pos_array[randi() % pos_array.size()]
-		get_parent().add_child(chief)
-		$ChiefAppearance.start(rand_range(16, 30))
+	if chief_appearances > 0:
+		if $ChiefAppearance.is_stopped() and self.position.y >= 32:
+			chief.position = pos_array[randi() % pos_array.size()]
+			get_parent().add_child(chief)
+			$ChiefAppearance.start(rand_range(16, 30))
+			chief_appearances -= 1
+	else: pass
 		
 
 func on_game_over():
 	is_game_over = true
-	tween.interpolate_property(self, "position", 1.0, 0.0, 3, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	get_tree().call_group("total_babosos", "on_game_over")
+	tween.interpolate_property(self, "position", self.position,
+			self.position + Vector2(0, 200), 3,
+			Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+
 
 func _process(delta):
 	if is_game_over == false:

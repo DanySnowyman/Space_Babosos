@@ -6,6 +6,7 @@ var is_retreating = false
 var velocity = Vector2()
 var retreating_speed = 40
 var actual_fiery_position = Vector2()
+var has_killed_player = false
 
 
 func _ready():
@@ -19,6 +20,7 @@ func _ready():
 
 func _on_Baboso_get_hit_by_laser(_area_id, area, _area_shape, _self_shape):
 	if area.has_method("im_the_laser"):
+		remove_from_group("total_fiery_babosos")
 		$AnimationPlayer.play("death")
 		$HurtSound.play()
 		get_tree().call_group("HUD", "add_score", "FIERY")
@@ -28,6 +30,7 @@ func _on_Baboso_get_hit_by_laser(_area_id, area, _area_shape, _self_shape):
 
 func _on_FieryInAction_get_hit_by_laser(_area_id, area, _area_shape, _self_shape):
 	if area.has_method("im_the_laser"):
+		remove_from_group("total_fiery_babosos")
 		tween.stop_all()
 		is_retreating = false
 		$FieryInAction/AttackAnimation.play("death_on_attack")
@@ -40,6 +43,7 @@ func _on_FieryInAction_get_hit_by_laser(_area_id, area, _area_shape, _self_shape
 func fiery_attack(player_pos):
 	var target = Vector2()
 	target = player_pos
+	remove_from_group("total_fiery_babosos")
 	$AttackSound.play()
 	$Sprite.visible = false
 	$CollisionShape2D.disabled = true
@@ -59,11 +63,12 @@ func fiery_attack(player_pos):
 	
 	
 func fiery_retreated():
+	$CollisionShape2D.disabled = false
+	$FieryInAction/AttackCollisionShape.disabled = true
 	yield(get_tree().create_timer(0.1), "timeout")
 	$Sprite.visible = true
-	$CollisionShape2D.disabled = false
 	$FieryInAction.visible = false
-	$FieryInAction/AttackCollisionShape.disabled = true
+	add_to_group("total_fiery_babosos")
 	
 	
 func _on_Space_baboso_fiery_area_entered(area):
@@ -76,15 +81,27 @@ func _on_Space_baboso_fiery_area_exited(area):
 		remove_from_group("no_ready_members")
 
 
+func set_retreating_animation():
+	if has_killed_player == true:
+		$FieryInAction/AttackAnimation.play("laughing")
+	else: $FieryInAction/AttackAnimation.play("retreat")
+	
+
 func _process(delta):
 	if is_retreating == true:
-		$FieryInAction/AttackAnimation.play("retreat")
+		set_retreating_animation()
 		$FieryInAction.position += (velocity * retreating_speed) * delta
 		velocity = $FieryInAction.position.direction_to(to_global($Sprite.position))
 		if (to_local($FieryInAction.position) - $Sprite.position).length() < 1:
 			is_retreating = false
+			has_killed_player = false
 			fiery_retreated()
 
 
 func im_a_baboso():
 	pass
+
+
+func _on_FieryInAction_hits_player(area_id, area, area_shape, self_shape):
+	if area.has_method("im_the_player"):
+		has_killed_player = true

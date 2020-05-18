@@ -79,9 +79,9 @@ volume_db = -4.039
 position = Vector2( -80, -48 )
 stream = ExtResource( 6 )
 
-[node name="ShootFrameLenght" type="Timer" parent="."]
+[node name="ShoothFrameLenght" type="Timer" parent="."]
 wait_time = 0.3
 [connection signal="area_entered" from="." to="." method="_on_Space_baboso_basic_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Space_baboso_basic_area_exited"]
 [connection signal="area_shape_entered" from="." to="." method="_on_Baboso_get_hit_by_Player_laser"]
-[connection signal="timeout" from="ShootFrameLenght" to="." method="_on_ShootFrameLenght_timeout"]
+[connection signal="timeout" from="ShoothFrameLenght" to="." method="_on_ShoothFrameLenght_timeout"]

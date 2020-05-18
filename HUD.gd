@@ -19,6 +19,8 @@ func substract_lives():
 		lives -= 1
 		combo = 0
 		$Combo.text = "COMBO " + "x " + str(combo)
+		$Combo.add_color_override("font_color", Color(1, 1, 1))
+		last_defeated = null
 		$Lives.text = "LIVES " + str(lives)
 		get_tree().call_group("Player", "player_reset")
 	else:
@@ -36,7 +38,6 @@ func add_score(baboso_type):
 		multiplier += 0.2
 	else:
 		combo = 0
-		$Combo.add_color_override("font_color", Color(1, 1, 1))
 	
 	if baboso_type == "BASIC":
 		baboso_value = 50

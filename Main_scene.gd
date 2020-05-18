@@ -17,9 +17,10 @@ func start_new_game():
 	pass
 	
 func game_over():
-	$Titles/Label.show()
+	$GameOverScreen.show_game_over()
 	yield(get_tree().create_timer(1), "timeout")
 	$BabososFormation.on_game_over()
+	$Player/CollisionShape2D.disabled = true
 	
 	
 	

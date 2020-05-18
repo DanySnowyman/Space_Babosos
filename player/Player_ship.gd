@@ -13,20 +13,26 @@ func _ready():
 	$ShipExplosion.visible = false
 	
 
-
-
 func player_reset():
 	$ShipExplosion.visible = false
 	$CollisionShape2D.disabled = true
 	self.position = Vector2(160, 160)
 	can_control = true
-	for n in range (5):
+	for n in range (8):
 		$Sprite.visible = true
 		yield(get_tree().create_timer(0.1), "timeout")
 		$Sprite.visible = false
 		yield(get_tree().create_timer(0.1), "timeout")
 	$Sprite.visible = true
 	$CollisionShape2D.disabled = false
+	
+	
+func on_game_over():
+	can_control = false
+	$Sprite.visible = false
+	$CollisionShape2D.disabled = true
+	yield(get_tree().create_timer(2), "timeout")
+	queue_free()
 	
 	
 

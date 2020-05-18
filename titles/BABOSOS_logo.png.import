@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Godot icon pixel art.png-997810ab6a4f07470f9bd9fa9792aa33.stex"
+path="res://.import/BABOSOS_logo.png-55c4d3206fe08d338ba9907e5f7d9a36.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gfx/Godot icon pixel art.png"
-dest_files=[ "res://.import/Godot icon pixel art.png-997810ab6a4f07470f9bd9fa9792aa33.stex" ]
+source_file="res://titles/BABOSOS_logo.png"
+dest_files=[ "res://.import/BABOSOS_logo.png-55c4d3206fe08d338ba9907e5f7d9a36.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
