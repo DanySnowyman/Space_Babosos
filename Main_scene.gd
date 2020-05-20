@@ -22,7 +22,7 @@ func show_hi_scores():
 func start_new_game():
 	waiting_for_start = false
 	$TitleScreen.visible = false
-	level = 1
+	level = 9
 	$HUD.announce_level(level)
 	yield($HUD.announce_level(level), "completed")
 	$BabososFormation.game_start(level)

@@ -32,8 +32,8 @@ func game_start(level):
 	formation_can_move = true
 	formation_getting_down = false
 	game_has_start = true
-	$BabosoBasicCadence.start(rand_range(0.5, 1.5))
-	$BabosoLaserCadence.start(rand_range(4, 6))
+	$BabosoBasicCadence.start(rand_range(0.5, 2.2))
+	$BabosoLaserCadence.start(rand_range(3, 6))
 	$BabosoFieryCadence.start(rand_range(4, 6))
 	$ChiefAppearance.start(rand_range(20, 35))
 
@@ -43,57 +43,25 @@ func create_formation(level):
 		formation_level_1()
 	elif level == 2:
 		formation_level_2()
+	elif level == 3:
+		formation_level_3()
+	elif level == 4:
+		formation_level_4()
+	elif level == 5:
+		formation_level_5()
+	elif level == 6:
+		formation_level_6()
+	elif level == 7:
+		formation_level_7()
+	elif level == 8:
+		formation_level_8()
+	elif level == 9:
+		formation_level_9()
+	elif level == 10:
+		formation_level_10()
 	
 	
 func formation_level_1():
-	var column_spacing = 24
-	var row_spacing = 20
-	
-	#Column 1
-	set_pos("basic", Vector2(0, 0))
-	set_pos("basic", Vector2(0, row_spacing))
-	set_pos("basic", Vector2(0, row_spacing * 2))
-	set_pos("fiery", Vector2(0, row_spacing * 3))
-	set_pos("fiery", Vector2(0, row_spacing * 4))
-	#Column 2
-	set_pos("basic", Vector2(column_spacing, 0))
-	set_pos("basic", Vector2(column_spacing, row_spacing))
-	set_pos("basic", Vector2(column_spacing, row_spacing * 2))
-	set_pos("fiery", Vector2(column_spacing, row_spacing * 3))
-	set_pos("fiery", Vector2(column_spacing, row_spacing * 4))
-	#Column 3
-	set_pos("basic", Vector2(column_spacing * 2, 0))
-	set_pos("basic", Vector2(column_spacing * 2, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 2))
-	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 4))
-	#Column 4
-	set_pos("basic", Vector2(column_spacing * 3, 0))
-	set_pos("basic", Vector2(column_spacing * 3, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 2))
-	set_pos("heavy", Vector2(column_spacing * 3, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 4))
-	#Column 5
-	set_pos("basic", Vector2(column_spacing * 4, 0))
-	set_pos("basic", Vector2(column_spacing * 4, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 2))
-	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 4))
-	#Column 6
-	set_pos("basic", Vector2(column_spacing * 5, 0))
-	set_pos("basic", Vector2(column_spacing * 5, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 2))
-	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 3))
-	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 4))
-	#Column 7
-	set_pos("basic", Vector2(column_spacing * 6, 0))
-	set_pos("basic", Vector2(column_spacing * 6, row_spacing))
-	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
-	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 3))
-	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 4))
-
-
-func formation_level_2():
 	var column_spacing = 24
 	var row_spacing = 20
 	
@@ -107,39 +75,471 @@ func formation_level_2():
 	set_pos("basic", Vector2(column_spacing, 0))
 	set_pos("basic", Vector2(column_spacing, row_spacing))
 	set_pos("basic", Vector2(column_spacing, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 3))
+	set_pos("laser", Vector2(column_spacing, row_spacing * 4))
 	#Column 3
 	set_pos("basic", Vector2(column_spacing * 2, 0))
 	set_pos("basic", Vector2(column_spacing * 2, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 4))
 	#Column 4
 	set_pos("basic", Vector2(column_spacing * 3, 0))
 	set_pos("basic", Vector2(column_spacing * 3, row_spacing))
-	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 2))
 	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 4))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 4))
 	#Column 5
 	set_pos("basic", Vector2(column_spacing * 4, 0))
 	set_pos("basic", Vector2(column_spacing * 4, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 4))
 	#Column 6
 	set_pos("basic", Vector2(column_spacing * 5, 0))
 	set_pos("basic", Vector2(column_spacing * 5, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 2))
-	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 3))
-	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 4))
 	#Column 7
 	set_pos("basic", Vector2(column_spacing * 6, 0))
 	set_pos("basic", Vector2(column_spacing * 6, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
 	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 3))
 	set_pos("laser", Vector2(column_spacing * 6, row_spacing * 4))
+
+
+func formation_level_2():
+	var column_spacing = 24
+	var row_spacing = 20
 	
+	#Column 1
+	set_pos("basic", Vector2(0, 0))
+	set_pos("basic", Vector2(0, row_spacing))
+	set_pos("basic", Vector2(0, row_spacing * 2))
+	set_pos("laser", Vector2(0, row_spacing * 3))
+	set_pos("fiery", Vector2(0, row_spacing * 4))
+	#Column 2
+	set_pos("basic", Vector2(column_spacing, 0))
+	set_pos("basic", Vector2(column_spacing, row_spacing))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 4))
+	#Column 3
+	set_pos("basic", Vector2(column_spacing * 2, 0))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 4))
+	#Column 4
+	set_pos("basic", Vector2(column_spacing * 3, 0))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 4))
+	#Column 5
+	set_pos("basic", Vector2(column_spacing * 4, 0))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 4))
+	#Column 6
+	set_pos("basic", Vector2(column_spacing * 5, 0))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 4))
+	#Column 7
+	set_pos("basic", Vector2(column_spacing * 6, 0))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 4))
+	
+
+func formation_level_3():
+	var column_spacing = 24
+	var row_spacing = 20
+	
+	#Column 1
+	set_pos("basic", Vector2(0, 0))
+	set_pos("laser", Vector2(0, row_spacing))
+	set_pos("fiery", Vector2(0, row_spacing * 2))
+	set_pos("fiery", Vector2(0, row_spacing * 3))
+	set_pos("fiery", Vector2(0, row_spacing * 4))
+	#Column 2
+	set_pos("basic", Vector2(column_spacing, 0))
+	set_pos("basic", Vector2(column_spacing, row_spacing))
+	set_pos("laser", Vector2(column_spacing, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 4))
+	#Column 3
+	set_pos("basic", Vector2(column_spacing * 2, 0))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 4))
+	#Column 4
+	set_pos("basic", Vector2(column_spacing * 3, 0))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 4))
+	#Column 5
+	set_pos("basic", Vector2(column_spacing * 4, 0))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 4))
+	#Column 6
+	set_pos("basic", Vector2(column_spacing * 5, 0))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 4))
+	#Column 7
+	set_pos("basic", Vector2(column_spacing * 6, 0))
+	set_pos("laser", Vector2(column_spacing * 6, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 4))
+	
+	
+func formation_level_4():
+	var column_spacing = 24
+	var row_spacing = 20
+	
+	#Column 1
+	set_pos("basic", Vector2(0, 0))
+	set_pos("basic", Vector2(0, row_spacing))
+	set_pos("fiery", Vector2(0, row_spacing * 2))
+	set_pos("heavy", Vector2(0, row_spacing * 3))
+	set_pos("basic", Vector2(0, row_spacing * 4))
+	#Column 2
+	set_pos("basic", Vector2(column_spacing, 0))
+	set_pos("laser", Vector2(column_spacing, row_spacing))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 4))
+	#Column 3
+	set_pos("basic", Vector2(column_spacing * 2, 0))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing))
+	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 4))
+	#Column 4
+	set_pos("basic", Vector2(column_spacing * 3, 0))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing))
+	set_pos("heavy", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 4))
+	#Column 5
+	set_pos("basic", Vector2(column_spacing * 4, 0))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 4))
+	#Column 6
+	set_pos("basic", Vector2(column_spacing * 5, 0))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 4))
+	#Column 7
+	set_pos("basic", Vector2(column_spacing * 6, 0))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 4))
+	
+	
+func formation_level_5():
+	var column_spacing = 24
+	var row_spacing = 20
+	
+	#Column 1
+	set_pos("basic", Vector2(0, 0))
+	set_pos("basic", Vector2(0, row_spacing))
+	set_pos("basic", Vector2(0, row_spacing * 2))
+	set_pos("heavy", Vector2(0, row_spacing * 3))
+	set_pos("heavy", Vector2(0, row_spacing * 4))
+	#Column 2
+	set_pos("basic", Vector2(column_spacing, 0))
+	set_pos("basic", Vector2(column_spacing, row_spacing))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing, row_spacing * 4))
+	#Column 3
+	set_pos("basic", Vector2(column_spacing * 2, 0))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 4))
+	#Column 4
+	set_pos("basic", Vector2(column_spacing * 3, 0))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 4))
+	#Column 5
+	set_pos("basic", Vector2(column_spacing * 4, 0))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 4))
+	#Column 6
+	set_pos("basic", Vector2(column_spacing * 5, 0))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 5, row_spacing * 4))
+	#Column 7
+	set_pos("basic", Vector2(column_spacing * 6, 0))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 4))
+	
+	
+func formation_level_6():
+	var column_spacing = 24
+	var row_spacing = 20
+	
+	#Column 1
+	set_pos("basic", Vector2(0, 0))
+	set_pos("basic", Vector2(0, row_spacing))
+	set_pos("fiery", Vector2(0, row_spacing * 2))
+	set_pos("basic", Vector2(0, row_spacing * 3))
+	set_pos("basic", Vector2(0, row_spacing * 4))
+	#Column 2
+	set_pos("basic", Vector2(column_spacing, 0))
+	set_pos("laser", Vector2(column_spacing, row_spacing))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 4))
+	#Column 3
+	set_pos("laser", Vector2(column_spacing * 2, 0))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 4))
+	#Column 4
+	set_pos("laser", Vector2(column_spacing * 3, 0))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 3, row_spacing * 4))
+	#Column 5
+	set_pos("laser", Vector2(column_spacing * 4, 0))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 4))
+	#Column 6
+	set_pos("basic", Vector2(column_spacing * 5, 0))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 4))
+	#Column 7
+	set_pos("basic", Vector2(column_spacing * 6, 0))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 4))
+	
+	
+func formation_level_7():
+	var column_spacing = 24
+	var row_spacing = 20
+	
+	#Column 1
+	set_pos("fiery", Vector2(0, 0))
+	set_pos("basic", Vector2(0, row_spacing))
+	set_pos("basic", Vector2(0, row_spacing * 2))
+	set_pos("heavy", Vector2(0, row_spacing * 3))
+	set_pos("fiery", Vector2(0, row_spacing * 4))
+	#Column 2
+	set_pos("fiery", Vector2(column_spacing, 0))
+	set_pos("basic", Vector2(column_spacing, row_spacing))
+	set_pos("laser", Vector2(column_spacing, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 4))
+	#Column 3
+	set_pos("fiery", Vector2(column_spacing * 2, 0))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 4))
+	#Column 4
+	set_pos("fiery", Vector2(column_spacing * 3, 0))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 4))
+	#Column 5
+	set_pos("fiery", Vector2(column_spacing * 4, 0))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 4))
+	#Column 6
+	set_pos("fiery", Vector2(column_spacing * 5, 0))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 4))
+	#Column 7
+	set_pos("fiery", Vector2(column_spacing * 6, 0))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing * 4))
+	
+	
+func formation_level_8():
+	var column_spacing = 24
+	var row_spacing = 20
+	
+	#Column 1
+	set_pos("basic", Vector2(0, 0))
+	set_pos("fiery", Vector2(0, row_spacing))
+	set_pos("laser", Vector2(0, row_spacing * 2))
+	set_pos("heavy", Vector2(0, row_spacing * 3))
+	set_pos("heavy", Vector2(0, row_spacing * 4))
+	#Column 2
+	set_pos("laser", Vector2(column_spacing, 0))
+	set_pos("basic", Vector2(column_spacing, row_spacing))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing, row_spacing * 4))
+	#Column 3
+	set_pos("fiery", Vector2(column_spacing * 2, 0))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 4))
+	#Column 4
+	set_pos("fiery", Vector2(column_spacing * 3, 0))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 4))
+	#Column 5
+	set_pos("fiery", Vector2(column_spacing * 4, 0))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 4))
+	#Column 6
+	set_pos("laser", Vector2(column_spacing * 5, 0))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 5, row_spacing * 4))
+	#Column 7
+	set_pos("basic", Vector2(column_spacing * 6, 0))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 4))
+
+
+func formation_level_9():
+	var column_spacing = 24
+	var row_spacing = 20
+	
+	#Column 1
+	set_pos("laser", Vector2(0, 0))
+	set_pos("fiery", Vector2(0, row_spacing))
+	set_pos("heavy", Vector2(0, row_spacing * 2))
+	set_pos("basic", Vector2(0, row_spacing * 3))
+	set_pos("basic", Vector2(0, row_spacing * 4))
+	#Column 2
+	set_pos("laser", Vector2(column_spacing, 0))
+	set_pos("fiery", Vector2(column_spacing, row_spacing))
+	set_pos("heavy", Vector2(column_spacing, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 4))
+	#Column 3
+	set_pos("laser", Vector2(column_spacing * 2, 0))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 4))
+	#Column 4
+	set_pos("laser", Vector2(column_spacing * 3, 0))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 4))
+	#Column 5
+	set_pos("laser", Vector2(column_spacing * 4, 0))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 4))
+	#Column 6
+	set_pos("laser", Vector2(column_spacing * 5, 0))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing))
+	set_pos("heavy", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 4))
+	#Column 7
+	set_pos("laser", Vector2(column_spacing * 6, 0))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 4))
+	
+	
+func formation_level_10():
+	var column_spacing = 24
+	var row_spacing = 20
+	
+	#Column 1
+	set_pos("laser", Vector2(0, 0))
+	set_pos("fiery", Vector2(0, row_spacing))
+	set_pos("basic", Vector2(0, row_spacing * 2))
+	set_pos("heavy", Vector2(0, row_spacing * 3))
+	set_pos("heavy", Vector2(0, row_spacing * 4))
+	#Column 2
+	set_pos("laser", Vector2(column_spacing, 0))
+	set_pos("laser", Vector2(column_spacing, row_spacing))
+	set_pos("fiery", Vector2(column_spacing, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing, row_spacing * 4))
+	#Column 3
+	set_pos("laser", Vector2(column_spacing * 2, 0))
+	set_pos("laser", Vector2(column_spacing * 2, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 2, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 2, row_spacing * 4))
+	#Column 4
+	set_pos("laser", Vector2(column_spacing * 3, 0))
+	set_pos("laser", Vector2(column_spacing * 3, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 3, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 3, row_spacing * 4))
+	#Column 5
+	set_pos("laser", Vector2(column_spacing * 4, 0))
+	set_pos("laser", Vector2(column_spacing * 4, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 4, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 4, row_spacing * 4))
+	#Column 6
+	set_pos("laser", Vector2(column_spacing * 5, 0))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing))
+	set_pos("fiery", Vector2(column_spacing * 5, row_spacing * 2))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 5, row_spacing * 4))
+	#Column 7
+	set_pos("laser", Vector2(column_spacing * 6, 0))
+	set_pos("fiery", Vector2(column_spacing * 6, row_spacing))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 3))
+	set_pos("heavy", Vector2(column_spacing * 6, row_spacing * 4))
+
 
 func set_pos(baboso_type, position):
 	if baboso_type == "basic":
@@ -165,7 +565,7 @@ func if_border_reached():
 		if left_border_reached(baboso) or right_border_reached(baboso):
 			get_down()
 			velocity = -velocity
-			speed += 5
+			speed += 7
 			break
 
 

@@ -1,0 +1,59 @@
+[33mcommit 8072b7d9762ebf2129fe1d70a2c7b0ff837dcd2c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Wed May 20 13:29:38 2020 +0200
+
+    Titulo y niveles funcionando
+
+[33mcommit 90393ddcee4054a85599924ea2da0b4e530bd30b[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Mon May 18 15:50:07 2020 +0200
+
+    Muertes arregladas y casi el titulo
+
+[33mcommit 48a51fc9d4a2b67ebc3bdb0471d330cc1aa3733d[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Fri May 15 19:38:12 2020 +0200
+
+    Mensaje de Game Over y estructura de intro
+
+[33mcommit 6c17c6246ccfe6cf7d00d7c5932138714ccb2745[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Thu Apr 30 14:04:37 2020 +0200
+
+    Todos los babosos. Marcadores de vidas, score y combo
+
+[33mcommit b0d2e139d354c283d6187d19edc346f95256a7ab[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Tue Apr 21 21:09:54 2020 +0200
+
+    Babosos Fiery atacando y replegándose a la perfección
+
+[33mcommit 487bd0c4e9ffe93570d91570f37fb6b3fe249ed9[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Sat Apr 18 21:06:13 2020 +0200
+
+    Añadido Baboso Fiery y completado su ataque
+
+[33mcommit 6fea1c6aec1488a4830e99eaf8ff9c3b357f9efd[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Tue Apr 14 21:34:15 2020 +0200
+
+    Babosos verdes y azules y sus disparos estan perfectos
+
+[33mcommit d552c02075d532e09a2b571ca541d6a99ca9b983[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Tue Apr 14 14:25:09 2020 +0200
+
+    Añadidos babosos laser y sus disparos
+
+[33mcommit fb6a4b84d7e5cc7801c9d5576a0ea5d308151fea[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Mon Apr 13 14:25:14 2020 +0200
+
+    Añadido baboso laser y creacion de formaciones manual
+
+[33mcommit c2f8bc374bd92e5c8e149847b9076e36e2bff8c5[m
+Author: DanySnowyman <danysnowyman@gmail.com>
+Date:   Fri Apr 10 13:06:21 2020 +0200
+
+    Funcionando con auto array para los Babosos
