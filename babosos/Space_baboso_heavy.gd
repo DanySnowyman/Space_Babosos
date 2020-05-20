@@ -50,7 +50,11 @@ func right_eye_eyection():
 	Eye.velocity = Vector2(1.5, -3)
 	get_parent().get_parent().add_child(Eye)
 	
-	
+
+func on_game_over():
+	$AnimationPlayer.play("win")
+
+
 func _on_Space_baboso_heavy_area_entered(area):
 	if area.has_method("no_lasers_allowed"):
 		add_to_group("no_ready_members")

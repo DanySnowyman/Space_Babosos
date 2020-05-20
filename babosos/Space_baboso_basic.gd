@@ -33,7 +33,7 @@ func _on_ShoothFrameLenght_timeout():
 	
 	
 func on_game_over():
-	pass
+	$AnimationPlayer.play("win")
 
 	
 func _on_Space_baboso_basic_area_entered(area):

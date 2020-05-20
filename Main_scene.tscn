@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://player/Player_ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://babosos/Babosos_formation.gd" type="Script" id=2]
@@ -56,6 +56,9 @@ tracks/0/keys = {
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 19, 90 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 15 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 16 )
@@ -143,7 +146,6 @@ Baboso_Chief = ExtResource( 14 )
 Bullet = ExtResource( 6 )
 
 [node name="BabosoBasicCadence" type="Timer" parent="BabososFormation"]
-wait_time = 2.0
 one_shot = true
 
 [node name="BabosoLaserCadence" type="Timer" parent="BabososFormation"]
@@ -190,6 +192,7 @@ __meta__ = {
 script = ExtResource( 11 )
 
 [node name="Score" type="Label" parent="HUD"]
+visible = false
 margin_left = 8.0
 margin_top = 170.0
 margin_right = 33.0
@@ -202,6 +205,7 @@ __meta__ = {
 }
 
 [node name="Lives" type="Label" parent="HUD"]
+visible = false
 margin_left = 289.0
 margin_top = 170.0
 margin_right = 313.0
@@ -214,6 +218,7 @@ __meta__ = {
 }
 
 [node name="Combo" type="Label" parent="HUD"]
+visible = false
 margin_left = 147.0
 margin_top = 170.0
 margin_right = 173.0
@@ -221,6 +226,24 @@ margin_bottom = 178.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 10 )
 text = "COMBO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSign" type="Label" parent="HUD"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.0
+margin_top = -18.0
+margin_right = 26.0
+margin_bottom = -2.0
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 24, 8 )
+custom_fonts/font = SubResource( 5 )
+text = "LEVEL"
 __meta__ = {
 "_edit_use_anchors_": false
 }

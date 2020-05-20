@@ -2,7 +2,7 @@ extends Node2D
 
 onready var tween = $Tween
 
-func _ready():
+func show_title_screen():
 	$SpaceLogo.position = Vector2(160,-65)
 	$BabososLogo.position = Vector2(160, 105)
 	$BabososLogo.scale.y = 0

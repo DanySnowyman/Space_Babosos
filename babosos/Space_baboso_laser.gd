@@ -32,7 +32,11 @@ func baboso_shoot():
 	yield(get_tree().create_timer(0.4), "timeout")
 	$BabosoShooting.visible = false
 	$Sprite.visible = true
-
+	
+	
+func on_game_over():
+	$AnimationPlayer.play("win")
+	
 
 func _on_Space_baboso_laser_area_entered(area):
 	if area.has_method("no_lasers_allowed"):

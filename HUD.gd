@@ -7,12 +7,22 @@ var multiplier = 1
 var last_defeated
 
 
-func _ready():
+func game_start():
 	add_to_group("HUD")
+	$Lives.visible = true
+	$Score.visible = true
+	$Combo.visible = true
 	$Lives.text = "LIVES " + str(lives)
 	$Score.text = "SCORE " + str(score)
 	$Combo.text = "COMBO " + "x " + str(combo)
 	
+
+func announce_level(level):
+	$LevelSign.text = "LEVEL " + str(level)
+	$LevelSign.visible = true
+	yield(get_tree().create_timer(2), "timeout")
+	$LevelSign.visible = false
+
 
 func substract_lives():
 	if lives > 0:

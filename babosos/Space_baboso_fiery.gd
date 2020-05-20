@@ -70,6 +70,10 @@ func fiery_retreated():
 	$FieryInAction.visible = false
 	add_to_group("total_fiery_babosos")
 	
+
+func on_game_over():
+	$AnimationPlayer.play("win")
+	$FieryInAction/AttackAnimation.play("laughing")
 	
 func _on_Space_baboso_fiery_area_entered(area):
 	if area.has_method("no_lasers_allowed"):

@@ -21,7 +21,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 4, 4.05961 )
+extents = Vector2( 3.5, 4.05961 )
 
 [node name="Laser" type="Area2D"]
 collision_layer = 4
@@ -33,8 +33,6 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "destroy"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

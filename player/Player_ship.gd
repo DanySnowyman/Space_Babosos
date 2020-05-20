@@ -5,7 +5,8 @@ var screen_size
 var speed = 130
 var can_control = false
 
-func _ready():
+func game_start():
+	self.visible = true
 	add_to_group("Player")
 	self.position = Vector2(160, 160)
 	screen_size = get_viewport_rect().size

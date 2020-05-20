@@ -6,6 +6,7 @@ var velocity
 
 
 func _ready():
+	add_to_group("chief_baboso")
 	$ChiefSound.play()
 	$AnimationPlayer.play("Idle")
 	if position.x < 0:
