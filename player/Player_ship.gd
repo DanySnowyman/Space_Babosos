@@ -7,6 +7,8 @@ var can_control = false
 
 func game_start():
 	self.visible = true
+	$Sprite.visible = true
+	$CollisionShape2D.disabled = false
 	add_to_group("Player")
 	self.position = Vector2(160, 160)
 	screen_size = get_viewport_rect().size
@@ -33,7 +35,7 @@ func on_game_over():
 	$Sprite.visible = false
 	$CollisionShape2D.disabled = true
 	yield(get_tree().create_timer(2), "timeout")
-	queue_free()
+	self.position = Vector2(160, 160)
 	
 	
 
@@ -89,9 +91,10 @@ func _on_Player_area_shape_entered(_area_id, area, _area_shape, _self_shape):
 	$ShipExplosion.visible = false
 	if area.has_method("im_a_baboso"):
 		get_tree().call_group("Main", "game_over")
-		can_control = false
 		$CollisionShape2D.disabled = true
-	else: get_tree().call_group("HUD", "substract_lives")
+	else:
+		get_tree().call_group("HUD", "substract_lives")
+		$CollisionShape2D.disabled = true
 	
 	
 func im_the_player():

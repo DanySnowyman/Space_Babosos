@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Babosos_text_sound.wav-93279f1e59a6303c0f4a533b0c546792.sample"
+
+[deps]
+
+source_file="res://titles/Babosos_text_sound.wav"
+dest_files=[ "res://.import/Babosos_text_sound.wav-93279f1e59a6303c0f4a533b0c546792.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

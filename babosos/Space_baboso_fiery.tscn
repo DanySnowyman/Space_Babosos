@@ -182,5 +182,5 @@ shape = SubResource( 4 )
 [connection signal="area_entered" from="." to="." method="_on_Space_baboso_fiery_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Space_baboso_fiery_area_exited"]
 [connection signal="area_shape_entered" from="." to="." method="_on_Baboso_get_hit_by_laser"]
-[connection signal="area_shape_entered" from="FieryInAction" to="." method="_on_FieryInAction_hits_player"]
 [connection signal="area_shape_entered" from="FieryInAction" to="." method="_on_FieryInAction_get_hit_by_laser"]
+[connection signal="area_shape_entered" from="FieryInAction" to="." method="_on_FieryInAction_hits_player"]

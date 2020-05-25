@@ -17,6 +17,16 @@ var speed = 0
 var chief_appearances = 0
 
 
+func reset_variables():
+	is_game_over = false
+	game_has_start = false
+	formation_can_move = false
+	formation_getting_down = true
+	velocity = Vector2(0, 0)
+	speed = 0
+	chief_appearances = 0
+
+
 func game_start(level):
 	add_to_group("BabososFormation")
 	randomize()
@@ -31,10 +41,27 @@ func game_start(level):
 	chief_appearances = 2
 	formation_can_move = true
 	formation_getting_down = false
+	is_game_over = false
 	game_has_start = true
-	$BabosoBasicCadence.start(rand_range(0.5, 2.2))
-	$BabosoLaserCadence.start(rand_range(3, 6))
-	$BabosoFieryCadence.start(rand_range(4, 6))
+	baboso_basic_cadence()
+	baboso_laser_cadence()
+	baboso_fiery_cadence()
+	chief_appearance()
+	
+	
+func baboso_basic_cadence():
+	$BabosoBasicCadence.start(rand_range(0.5, 2))
+	
+
+func baboso_laser_cadence():
+	$BabosoLaserCadence.start(rand_range(2, 5))
+	
+
+func baboso_fiery_cadence():
+	$BabosoFieryCadence.start(rand_range(4, 7))
+	
+	
+func chief_appearance():
 	$ChiefAppearance.start(rand_range(20, 35))
 
 
@@ -603,7 +630,7 @@ func baboso_basic_shoot():
 			next_shooting_baboso.baboso_shoot()
 			bullet.position = next_shooting_baboso.global_position
 			get_parent().add_child(bullet)
-			$BabosoBasicCadence.start()
+			baboso_basic_cadence()
 	
 	if $BulletPause.is_stopped() && $LaserPause.is_stopped():
 		formation_can_move = true
@@ -618,7 +645,7 @@ func baboso_laser_shoot():
 			$LaserPause.start()
 			formation_can_move = false
 			next_shooting_baboso.baboso_shoot()
-			$BabosoLaserCadence.start()
+			baboso_laser_cadence()
 			
 	if $LaserPause.is_stopped() && $BulletPause.is_stopped():
 		formation_can_move = true
@@ -631,7 +658,7 @@ func baboso_fiery_attack():
 		var next_attacking_fiery = fiery_babosos[randi() % fiery_babosos.size()]
 		if $BabosoFieryCadence.is_stopped() && formation_getting_down == false:
 			next_attacking_fiery.fiery_attack(fiery_target)
-			$BabosoFieryCadence.start()
+			baboso_fiery_cadence()
 
 
 func baboso_chief_appear():
@@ -645,7 +672,7 @@ func baboso_chief_appear():
 		if $ChiefAppearance.is_stopped() and self.position.y >= 32:
 			chief.position = pos_array[randi() % pos_array.size()]
 			get_parent().add_child(chief)
-			$ChiefAppearance.start(rand_range(16, 30))
+			chief_appearance()
 			chief_appearances -= 1
 	else: pass
 	
@@ -657,6 +684,7 @@ func on_game_over():
 			self.position + Vector2(0, 200), 10,
 			Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
+	yield(tween, "tween_completed")
 
 
 func level_completed():
@@ -667,7 +695,7 @@ func level_completed():
 		
 
 func _process(delta):
-	if is_game_over == false and game_has_start:
+	if is_game_over == false and game_has_start == true:
 		move_formation(delta)
 		if_border_reached()
 		baboso_basic_shoot()

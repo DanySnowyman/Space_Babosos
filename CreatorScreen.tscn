@@ -1,0 +1,153 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://fonts/BMmini.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://titles/Godot_icon_pixel_art.png" type="Texture" id=2]
+[ext_resource path="res://CreatorScreen.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=11]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=12]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=13]
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="CreatorScreen" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="AGameBy" type="Label" parent="."]
+visible = false
+margin_left = 56.0
+margin_top = 40.0
+margin_right = 152.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 1 )
+text = "A game by..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DanySnowyman" type="Label" parent="."]
+visible = false
+margin_left = 80.0
+margin_top = 64.0
+margin_right = 216.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 2 )
+text = "@DanySnowyman"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D" type="Label" parent="DanySnowyman"]
+margin_left = 12.0
+margin_right = 22.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "D"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S" type="Label" parent="DanySnowyman"]
+margin_left = 52.0
+margin_right = 62.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "S"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MadeWith" type="Label" parent="."]
+visible = false
+margin_left = 56.0
+margin_top = 104.0
+margin_right = 150.0
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 3 )
+text = "Made with..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GodotEngine" type="Label" parent="."]
+visible = false
+margin_left = 80.0
+margin_top = 128.0
+margin_right = 188.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 4 )
+text = "Godot Engine"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="G" type="Label" parent="GodotEngine"]
+margin_right = 10.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "G"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="E" type="Label" parent="GodotEngine"]
+margin_left = 54.0
+margin_right = 64.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "E"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GodotLogo" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 224, 128 )
+frames = SubResource( 9 )
+frame = 12

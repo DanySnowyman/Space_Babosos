@@ -72,7 +72,6 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 8
-frame = 6
 
 [node name="BabosoShooting" type="Sprite" parent="."]
 visible = false

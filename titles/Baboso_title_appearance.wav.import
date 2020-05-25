@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Baboso_title_appearance.wav-2d3c4153feed993822ceade4a3c939d1.sample"
+
+[deps]
+
+source_file="res://titles/Baboso_title_appearance.wav"
+dest_files=[ "res://.import/Baboso_title_appearance.wav-2d3c4153feed993822ceade4a3c939d1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
