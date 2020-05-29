@@ -137,7 +137,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 19, 90 )
+extents = Vector2( 16, 90 )
 
 [sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 15 )
@@ -290,18 +290,12 @@ collision_mask = 2
 script = ExtResource( 7 )
 
 [node name="NoLasersAreaLeft" type="CollisionShape2D" parent="NoLasersAllowedArea"]
-position = Vector2( 19, 90 )
+position = Vector2( 16, 90 )
 shape = SubResource( 7 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="NoLasersAreaRight" type="CollisionShape2D" parent="NoLasersAllowedArea"]
-position = Vector2( 301, 90 )
+position = Vector2( 304, 90 )
 shape = SubResource( 7 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 11 )

@@ -4,6 +4,7 @@ export (PackedScene) var Laser
 var screen_size
 var speed = 130
 var can_control = false
+var can_dead = true
 
 func game_start():
 	self.visible = true
@@ -13,6 +14,7 @@ func game_start():
 	self.position = Vector2(160, 160)
 	screen_size = get_viewport_rect().size
 	can_control = true
+	can_dead = true
 	$ShipExplosion.visible = false
 	
 
@@ -21,6 +23,7 @@ func player_reset():
 	$CollisionShape2D.disabled = true
 	self.position = Vector2(160, 160)
 	can_control = true
+	can_dead = true
 	for n in range (8):
 		$Sprite.visible = true
 		yield(get_tree().create_timer(0.1), "timeout")
@@ -82,19 +85,21 @@ func _process(delta):
 
 
 func _on_Player_area_shape_entered(_area_id, area, _area_shape, _self_shape):
-	can_control = false
-	$Sprite.visible = false
-	$ShipExplosion.visible = true
-	$AnimationPlayer.play("explosion")
-	$ExplosionSound.play()
-	yield($AnimationPlayer, "animation_finished")
-	$ShipExplosion.visible = false
-	if area.has_method("im_a_baboso"):
-		get_tree().call_group("Main", "game_over")
-		$CollisionShape2D.disabled = true
-	else:
-		get_tree().call_group("HUD", "substract_lives")
-		$CollisionShape2D.disabled = true
+	if can_dead == true:
+		can_dead = false
+		can_control = false
+		$Sprite.visible = false
+		$ShipExplosion.visible = true
+		$AnimationPlayer.play("explosion")
+		$ExplosionSound.play()
+		yield($AnimationPlayer, "animation_finished")
+		$ShipExplosion.visible = false
+		if area.has_method("im_a_baboso"):
+			get_tree().call_group("Main", "game_over")
+			$CollisionShape2D.disabled = true
+		else:
+			get_tree().call_group("HUD", "substract_lives")
+			$CollisionShape2D.disabled = true
 	
 	
 func im_the_player():

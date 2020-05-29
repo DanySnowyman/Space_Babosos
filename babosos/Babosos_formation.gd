@@ -94,46 +94,46 @@ func formation_level_1():
 	
 	#Column 1
 	set_pos("basic", Vector2(0, 0))
-	set_pos("basic", Vector2(0, row_spacing))
+	set_pos("laser", Vector2(0, row_spacing))
 	set_pos("basic", Vector2(0, row_spacing * 2))
 	set_pos("basic", Vector2(0, row_spacing * 3))
-	set_pos("laser", Vector2(0, row_spacing * 4))
+	set_pos("basic", Vector2(0, row_spacing * 4))
 	#Column 2
 	set_pos("basic", Vector2(column_spacing, 0))
-	set_pos("basic", Vector2(column_spacing, row_spacing))
+	set_pos("laser", Vector2(column_spacing, row_spacing))
 	set_pos("basic", Vector2(column_spacing, row_spacing * 2))
 	set_pos("basic", Vector2(column_spacing, row_spacing * 3))
-	set_pos("laser", Vector2(column_spacing, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing, row_spacing * 4))
 	#Column 3
-	set_pos("basic", Vector2(column_spacing * 2, 0))
+	set_pos("laser", Vector2(column_spacing * 2, 0))
 	set_pos("basic", Vector2(column_spacing * 2, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 2))
 	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 3))
-	set_pos("laser", Vector2(column_spacing * 2, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing * 2, row_spacing * 4))
 	#Column 4
-	set_pos("basic", Vector2(column_spacing * 3, 0))
+	set_pos("laser", Vector2(column_spacing * 3, 0))
 	set_pos("basic", Vector2(column_spacing * 3, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 2))
 	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 3))
-	set_pos("laser", Vector2(column_spacing * 3, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing * 3, row_spacing * 4))
 	#Column 5
-	set_pos("basic", Vector2(column_spacing * 4, 0))
+	set_pos("laser", Vector2(column_spacing * 4, 0))
 	set_pos("basic", Vector2(column_spacing * 4, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 2))
 	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 3))
-	set_pos("laser", Vector2(column_spacing * 4, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing * 4, row_spacing * 4))
 	#Column 6
 	set_pos("basic", Vector2(column_spacing * 5, 0))
-	set_pos("basic", Vector2(column_spacing * 5, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 5, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 2))
 	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 3))
-	set_pos("laser", Vector2(column_spacing * 5, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing * 5, row_spacing * 4))
 	#Column 7
 	set_pos("basic", Vector2(column_spacing * 6, 0))
-	set_pos("basic", Vector2(column_spacing * 6, row_spacing))
+	set_pos("laser", Vector2(column_spacing * 6, row_spacing))
 	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 2))
 	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 3))
-	set_pos("laser", Vector2(column_spacing * 6, row_spacing * 4))
+	set_pos("basic", Vector2(column_spacing * 6, row_spacing * 4))
 
 
 func formation_level_2():

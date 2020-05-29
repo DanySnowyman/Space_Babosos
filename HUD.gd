@@ -42,7 +42,7 @@ func announce_level(level):
 
 
 func substract_lives():
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.2), "timeout")
 	if lives > 0:
 		lives -= 1
 		combo = 0
@@ -84,7 +84,7 @@ func add_score(baboso_type):
 		$Combo.add_color_override("font_color", Color(1, 0.47, 0))
 		last_defeated = baboso_type
 	elif baboso_type == "CHIEF":
-		baboso_value = 500
+		baboso_value = 2000
 	
 	score += baboso_value * multiplier
 	$Combo.text = "COMBO " + "x " + str(combo)
