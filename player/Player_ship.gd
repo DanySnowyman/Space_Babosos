@@ -6,10 +6,7 @@ var speed = 130
 var can_control = false
 var can_dead = true
 
-func game_start():
-	self.visible = true
-	$Sprite.visible = true
-	$CollisionShape2D.disabled = false
+func _ready():
 	add_to_group("Player")
 	self.position = Vector2(160, 160)
 	screen_size = get_viewport_rect().size
@@ -34,11 +31,12 @@ func player_reset():
 	
 	
 func on_game_over():
-	can_control = false
-	$Sprite.visible = false
-	$CollisionShape2D.disabled = true
-	yield(get_tree().create_timer(2), "timeout")
-	self.position = Vector2(160, 160)
+	queue_free()
+#	can_control = false
+#	$Sprite.visible = false
+#	$CollisionShape2D.disabled = true
+#	yield(get_tree().create_timer(2), "timeout")
+#	self.position = Vector2(160, 160)
 	
 	
 

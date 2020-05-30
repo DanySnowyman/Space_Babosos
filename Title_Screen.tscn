@@ -1,0 +1,140 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://BabosoTitle.gd" type="Script" id=1]
+[ext_resource path="res://TitleScreen.gd" type="Script" id=2]
+[ext_resource path="res://titles/Baboso_title_appearance.wav" type="AudioStream" id=3]
+[ext_resource path="res://titles/Babosos_text_sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://titles/Start_is_pressed.wav" type="AudioStream" id=5]
+[ext_resource path="res://titles/Baboso_title.png" type="Texture" id=6]
+[ext_resource path="res://fonts/BMmini.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://titles/BABOSOS_logo.png" type="Texture" id=8]
+[ext_resource path="res://titles/SPACE_logo.png" type="Texture" id=9]
+[ext_resource path="res://titles/Space_text_sound.wav" type="AudioStream" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 7 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "BabosoAnimation"
+length = 1.2
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("BabosoTitle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "BabosoMovement"
+tracks/0/type = "value"
+tracks/0/path = NodePath("BabosoTitle:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 240, 24 ), Vector2( 296, 48 ), Vector2( 264, 72 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BabosoTitle:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -63.47, -33.2393, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BabosoTitle:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("BabosoTitle")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_ready"
+} ]
+}
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="SpaceLogo" type="Sprite" parent="."]
+position = Vector2( 160, 65 )
+texture = ExtResource( 9 )
+
+[node name="BabososLogo" type="Sprite" parent="."]
+position = Vector2( 160, 105 )
+texture = ExtResource( 8 )
+
+[node name="PressStartText" type="Label" parent="."]
+visible = false
+margin_left = 98.0
+margin_top = 128.0
+margin_right = 224.0
+margin_bottom = 142.0
+custom_fonts/font = SubResource( 1 )
+text = "PRESS FIRE BUTTON TO START"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PressStartBlink" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/BabosoAnimation = SubResource( 2 )
+anims/BabosoMovement = SubResource( 3 )
+
+[node name="BabosoTitle" type="Sprite" parent="."]
+position = Vector2( 240, 24 )
+rotation = -1.10776
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 6 )
+hframes = 8
+script = ExtResource( 1 )
+
+[node name="SpaceTextFallSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="BabososTextAppearSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="BabosoEnterSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="StartPressedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )

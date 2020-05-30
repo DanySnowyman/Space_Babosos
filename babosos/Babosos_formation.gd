@@ -13,18 +13,19 @@ var game_has_start = false
 var formation_can_move = false
 var formation_getting_down = true
 var velocity = Vector2(0, 0)
-var speed = 0
+var speed
+var difficulty
 var chief_appearances = 0
 
 
-func reset_variables():
-	is_game_over = false
-	game_has_start = false
-	formation_can_move = false
-	formation_getting_down = true
-	velocity = Vector2(0, 0)
-	speed = 0
-	chief_appearances = 0
+#func reset_variables():
+#	is_game_over = false
+#	game_has_start = false
+#	formation_can_move = false
+#	formation_getting_down = true
+#	velocity = Vector2(0, 0)
+#	speed = 0
+#	chief_appearances = 0
 
 
 func game_start(level):
@@ -37,7 +38,6 @@ func game_start(level):
 	tween.start()
 	yield(tween, "tween_completed")
 	velocity = Vector2(1, 0)
-	speed = 10
 	chief_appearances = 2
 	formation_can_move = true
 	formation_getting_down = false
@@ -47,18 +47,39 @@ func game_start(level):
 	baboso_laser_cadence()
 	baboso_fiery_cadence()
 	chief_appearance()
+	if level <= 5:
+		difficulty = "easy"
+		speed = 10
+	elif level <= 8:
+		difficulty = "medium"
+		speed = 14
+	else:
+		difficulty = "hard"
+		speed = 16
 	
 	
 func baboso_basic_cadence():
-	$BabosoBasicCadence.start(rand_range(0.5, 2))
-	
+	if difficulty == "easy":
+		$BabosoBasicCadence.start(rand_range(1.5, 3))
+	elif difficulty == "medium":
+		$BabosoBasicCadence.start(rand_range(1, 2))
+	else: $BabosoBasicCadence.start(rand_range(0.5, 1))
+
 
 func baboso_laser_cadence():
-	$BabosoLaserCadence.start(rand_range(2, 5))
+	if difficulty == "easy":
+		$BabosoLaserCadence.start(rand_range(2, 5))
+	elif difficulty == "medium":
+		$BabosoLaserCadence.start(rand_range(1.5, 4))
+	else: $BabosoLaserCadence.start(rand_range(1, 3))
 	
-
+	
 func baboso_fiery_cadence():
-	$BabosoFieryCadence.start(rand_range(4, 7))
+	if difficulty == "easy":
+		$BabosoFieryCadence.start(rand_range(4, 7))
+	elif difficulty == "medium":
+		$BabosoFieryCadence.start(rand_range(3.5, 6.5))
+	else: $BabosoFieryCadence.start(rand_range(3, 6))
 	
 	
 func chief_appearance():
@@ -634,8 +655,8 @@ func baboso_basic_shoot():
 	
 	if $BulletPause.is_stopped() && $LaserPause.is_stopped():
 		formation_can_move = true
-		
-		
+
+
 func baboso_laser_shoot():
 	var laser_babosos = get_tree().get_nodes_in_group("total_laser_babosos")
 	var laser_babosos_unready = get_tree().get_nodes_in_group("no_ready_members")
@@ -649,7 +670,7 @@ func baboso_laser_shoot():
 			
 	if $LaserPause.is_stopped() && $BulletPause.is_stopped():
 		formation_can_move = true
-			
+
 
 func baboso_fiery_attack():
 	var fiery_target = get_parent().get_node("Player").get_global_position()

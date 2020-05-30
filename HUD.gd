@@ -30,7 +30,6 @@ func game_start():
 	
 
 func announce_level(level):
-	$HiScore.visible = false
 	combo = 0
 	multiplier = 1
 	$Combo.text = "COMBO " + "x " + str(combo)

@@ -1,0 +1,451 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://gfx/Space_baboso_basic.png" type="Texture" id=1]
+[ext_resource path="res://gfx/Space_baboso_fiery.png" type="Texture" id=2]
+[ext_resource path="res://gfx/Player_ship.png" type="Texture" id=3]
+[ext_resource path="res://gfx/Space_baboso_laser.png" type="Texture" id=4]
+[ext_resource path="res://gfx/Space_baboso_chief.png" type="Texture" id=5]
+[ext_resource path="res://gfx/Space_baboso_heavy_1.png" type="Texture" id=6]
+[ext_resource path="res://fonts/BMmini8px.tres" type="DynamicFont" id=7]
+[ext_resource path="res://fonts/BMmini.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://ScoreScreen.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 32, 16 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=22]
+animations = [ {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 18 ), SubResource( 17 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 4.0
+} ]
+
+[sub_resource type="DynamicFont" id=23]
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 8
+font_data = ExtResource( 8 )
+
+[node name="ScoreScreen" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="CharactersScreen" type="Node2D" parent="."]
+
+[node name="MeetTheCharsTitle" type="Label" parent="CharactersScreen"]
+visible = false
+margin_left = 66.0
+margin_top = 13.0
+margin_right = 258.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 1 )
+text = "MEET THE CHARACTERS!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BasicRow" type="Node2D" parent="CharactersScreen"]
+visible = false
+
+[node name="Basic" type="AnimatedSprite" parent="CharactersScreen/BasicRow"]
+position = Vector2( 88, 45 )
+frames = SubResource( 4 )
+playing = true
+
+[node name="BasicText" type="Label" parent="CharactersScreen/BasicRow"]
+margin_left = 141.0
+margin_top = 43.0
+margin_right = 181.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 7 )
+text = "BASIC"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BasicPoints" type="Label" parent="CharactersScreen/BasicRow"]
+margin_left = 205.0
+margin_top = 43.0
+margin_right = 245.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 7 )
+text = "50"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PointsText" type="Label" parent="CharactersScreen/BasicRow"]
+margin_left = 228.0
+margin_top = 43.0
+margin_right = 268.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 7 )
+text = "points"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LaserRow" type="Node2D" parent="CharactersScreen"]
+visible = false
+
+[node name="Laser" type="AnimatedSprite" parent="CharactersScreen/LaserRow"]
+position = Vector2( 88, 68 )
+frames = SubResource( 7 )
+frame = 1
+playing = true
+
+[node name="LaserText" type="Label" parent="CharactersScreen/LaserRow"]
+margin_left = 141.0
+margin_top = 66.0
+margin_right = 181.0
+margin_bottom = 85.0
+custom_fonts/font = ExtResource( 7 )
+text = "LASER
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LaserPoints" type="Label" parent="CharactersScreen/LaserRow"]
+margin_left = 201.0
+margin_top = 66.0
+margin_right = 245.0
+margin_bottom = 85.0
+custom_fonts/font = ExtResource( 7 )
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PointsText2" type="Label" parent="CharactersScreen/LaserRow"]
+margin_left = 228.0
+margin_top = 66.0
+margin_right = 268.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 7 )
+text = "points"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FieryRow" type="Node2D" parent="CharactersScreen"]
+visible = false
+
+[node name="Fiery" type="AnimatedSprite" parent="CharactersScreen/FieryRow"]
+position = Vector2( 88, 91 )
+frames = SubResource( 10 )
+playing = true
+
+[node name="FieryText" type="Label" parent="CharactersScreen/FieryRow"]
+margin_left = 141.0
+margin_top = 89.0
+margin_right = 181.0
+margin_bottom = 103.0
+custom_fonts/font = ExtResource( 7 )
+text = "FIERY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FieryPoints" type="Label" parent="CharactersScreen/FieryRow"]
+margin_left = 201.0
+margin_top = 89.0
+margin_right = 245.0
+margin_bottom = 103.0
+custom_fonts/font = ExtResource( 7 )
+text = "150"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PointsText3" type="Label" parent="CharactersScreen/FieryRow"]
+margin_left = 228.0
+margin_top = 89.0
+margin_right = 268.0
+margin_bottom = 103.0
+custom_fonts/font = ExtResource( 7 )
+text = "points"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeavyRow" type="Node2D" parent="CharactersScreen"]
+visible = false
+
+[node name="Heavy" type="AnimatedSprite" parent="CharactersScreen/HeavyRow"]
+position = Vector2( 88, 114 )
+frames = SubResource( 13 )
+frame = 1
+playing = true
+
+[node name="HeavyText" type="Label" parent="CharactersScreen/HeavyRow"]
+margin_left = 141.0
+margin_top = 112.0
+margin_right = 181.0
+margin_bottom = 126.0
+custom_fonts/font = ExtResource( 7 )
+text = "HEAVY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeavyPoints" type="Label" parent="CharactersScreen/HeavyRow"]
+margin_left = 202.0
+margin_top = 112.0
+margin_right = 246.0
+margin_bottom = 126.0
+custom_fonts/font = ExtResource( 7 )
+text = "200"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PointsText4" type="Label" parent="CharactersScreen/HeavyRow"]
+margin_left = 228.0
+margin_top = 112.0
+margin_right = 268.0
+margin_bottom = 126.0
+custom_fonts/font = ExtResource( 7 )
+text = "points"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChiefRow" type="Node2D" parent="CharactersScreen"]
+visible = false
+
+[node name="Chief" type="AnimatedSprite" parent="CharactersScreen/ChiefRow"]
+position = Vector2( 88, 137 )
+frames = SubResource( 16 )
+playing = true
+
+[node name="ChiefText" type="Label" parent="CharactersScreen/ChiefRow"]
+margin_left = 141.0
+margin_top = 135.0
+margin_right = 181.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 7 )
+text = "CHIEF"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChiefPoints" type="Label" parent="CharactersScreen/ChiefRow"]
+margin_left = 199.0
+margin_top = 135.0
+margin_right = 257.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 7 )
+text = "2000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PointsText5" type="Label" parent="CharactersScreen/ChiefRow"]
+margin_left = 228.0
+margin_top = 135.0
+margin_right = 268.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 7 )
+text = "points"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerRow" type="Node2D" parent="CharactersScreen"]
+visible = false
+
+[node name="Player" type="AnimatedSprite" parent="CharactersScreen/PlayerRow"]
+position = Vector2( 88, 160 )
+frames = SubResource( 22 )
+frame = 1
+playing = true
+
+[node name="PlayerText" type="Label" parent="CharactersScreen/PlayerRow"]
+margin_left = 130.0
+margin_top = 158.0
+margin_right = 182.0
+margin_bottom = 172.0
+custom_fonts/font = ExtResource( 7 )
+text = "THIS IS YOU!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LiveNumber" type="Label" parent="CharactersScreen/PlayerRow"]
+margin_left = 204.0
+margin_top = 158.0
+margin_right = 262.0
+margin_bottom = 172.0
+custom_fonts/font = ExtResource( 7 )
+text = "3 x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LivesText" type="Label" parent="CharactersScreen/PlayerRow"]
+margin_left = 228.0
+margin_top = 158.0
+margin_right = 268.0
+margin_bottom = 172.0
+custom_fonts/font = ExtResource( 7 )
+text = "lives"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToPlayScreen" type="Node2D" parent="."]
+visible = false
+
+[node name="HowToPlayTitle" type="Label" parent="HowToPlayScreen"]
+visible = false
+margin_left = 108.0
+margin_top = 22.0
+margin_right = 218.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 23 )
+text = "HOW TO PLAY:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToPlay1" type="Label" parent="HowToPlayScreen"]
+visible = false
+margin_left = 54.0
+margin_top = 54.0
+margin_right = 280.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 24 )
+text = "Defend the Earth against the devilish Space Babosos."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToPlay2" type="Label" parent="HowToPlayScreen"]
+visible = false
+margin_left = 54.0
+margin_top = 76.0
+margin_right = 277.0
+margin_bottom = 116.0
+custom_fonts/font = SubResource( 24 )
+text = "Destroy consecutive same-type Babosos to increase the combo multiplier.
+Get killed and the combo counter will reset."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToPlay3" type="Label" parent="HowToPlayScreen"]
+visible = false
+margin_left = 54.0
+margin_top = 122.0
+margin_right = 263.0
+margin_bottom = 163.0
+custom_fonts/font = SubResource( 24 )
+text = "You only have three ships, but if the Babosos formation catch you at the bottom line...
+Game will over no matter how many lives remains!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

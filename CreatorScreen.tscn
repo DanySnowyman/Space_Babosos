@@ -10,43 +10,43 @@ font_data = ExtResource( 1 )
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=14]
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=15]
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=16]
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=17]
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=18]
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=19]
 font_data = ExtResource( 1 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 2 )
 region = Rect2( 96, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 2 )
 region = Rect2( 144, 0, 48, 48 )
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=13]
 animations = [ {
-"frames": [ SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 5 ) ],
+"frames": [ SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
@@ -56,7 +56,7 @@ animations = [ {
 script = ExtResource( 3 )
 
 [node name="AGameBy" type="Label" parent="."]
-visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 56.0
 margin_top = 40.0
 margin_right = 152.0
@@ -68,7 +68,7 @@ __meta__ = {
 }
 
 [node name="DanySnowyman" type="Label" parent="."]
-visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 80.0
 margin_top = 64.0
 margin_right = 216.0
@@ -83,8 +83,9 @@ __meta__ = {
 margin_left = 12.0
 margin_right = 22.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_constants/shadow_offset_y = 1
 text = "D"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -94,7 +95,7 @@ __meta__ = {
 margin_left = 52.0
 margin_right = 62.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 15 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "S"
 __meta__ = {
@@ -102,24 +103,24 @@ __meta__ = {
 }
 
 [node name="MadeWith" type="Label" parent="."]
-visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 56.0
 margin_top = 104.0
 margin_right = 150.0
 margin_bottom = 120.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 16 )
 text = "Made with..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GodotEngine" type="Label" parent="."]
-visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 80.0
 margin_top = 128.0
 margin_right = 188.0
 margin_bottom = 144.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 17 )
 text = "Godot Engine"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,7 +129,7 @@ __meta__ = {
 [node name="G" type="Label" parent="GodotEngine"]
 margin_right = 10.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 18 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "G"
 __meta__ = {
@@ -139,7 +140,7 @@ __meta__ = {
 margin_left = 54.0
 margin_right = 64.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 19 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "E"
 __meta__ = {
@@ -147,7 +148,9 @@ __meta__ = {
 }
 
 [node name="GodotLogo" type="AnimatedSprite" parent="."]
-visible = false
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 224, 128 )
-frames = SubResource( 9 )
+frames = SubResource( 13 )
 frame = 12
+
+[node name="Tween" type="Tween" parent="."]

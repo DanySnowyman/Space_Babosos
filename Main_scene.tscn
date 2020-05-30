@@ -1,9 +1,8 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://player/Player_ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://babosos/Babosos_formation.gd" type="Script" id=2]
 [ext_resource path="res://babosos/Space_baboso_basic.tscn" type="PackedScene" id=3]
-[ext_resource path="res://GameOverScreen.gd" type="Script" id=4]
 [ext_resource path="res://babosos/Space_baboso_laser.tscn" type="PackedScene" id=5]
 [ext_resource path="res://babosos/Baboso_bullet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://LaserExclusionArea.gd" type="Script" id=7]
@@ -16,97 +15,15 @@
 [ext_resource path="res://babosos/Space_baboso_chief.tscn" type="PackedScene" id=14]
 [ext_resource path="res://fonts/BMmini.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://Main_scene.gd" type="Script" id=16]
-[ext_resource path="res://titles/SPACE_logo.png" type="Texture" id=17]
-[ext_resource path="res://titles/BABOSOS_logo.png" type="Texture" id=18]
-[ext_resource path="res://TitleScreen.gd" type="Script" id=19]
-[ext_resource path="res://titles/Baboso_title.png" type="Texture" id=20]
-[ext_resource path="res://BabosoTitle.gd" type="Script" id=21]
-[ext_resource path="res://titles/Babosos_text_sound.wav" type="AudioStream" id=22]
-[ext_resource path="res://titles/Start_is_pressed.wav" type="AudioStream" id=23]
-[ext_resource path="res://titles/Space_text_sound.wav" type="AudioStream" id=24]
+[ext_resource path="res://Title_Screen.tscn" type="PackedScene" id=17]
+[ext_resource path="res://ScoreScreen.tscn" type="PackedScene" id=18]
 [ext_resource path="res://CreatorScreen.tscn" type="PackedScene" id=25]
-[ext_resource path="res://titles/Baboso_title_appearance.wav" type="AudioStream" id=26]
 
 [sub_resource type="DynamicFont" id=1]
-size = 8
-font_data = ExtResource( 15 )
-
-[sub_resource type="Animation" id=2]
-resource_name = "BabosoAnimation"
-length = 1.2
-loop = true
-step = 0.15
-tracks/0/type = "value"
-tracks/0/path = NodePath("BabosoTitle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "BabosoMovement"
-tracks/0/type = "value"
-tracks/0/path = NodePath("BabosoTitle:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 240, 24 ), Vector2( 296, 48 ), Vector2( 264, 72 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BabosoTitle:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -63.47, -33.2393, 0.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("BabosoTitle:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("BabosoTitle")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_ready"
-} ]
-}
-
-[sub_resource type="DynamicFont" id=4]
 size = 26
 font_data = ExtResource( 15 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("FrontStars:self_modulate")
@@ -121,7 +38,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.137255, 0.156863, 0.243137, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("BackStars:self_modulate")
@@ -136,72 +53,24 @@ tracks/0/keys = {
 "values": [ Color( 0.160784, 0.243137, 0.4, 1 ), Color( 0.054902, 0.0823529, 0.133333, 1 ), Color( 0.160784, 0.243137, 0.4, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 16, 90 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 15 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 16 )
+CreatorScreen = ExtResource( 25 )
+TitleScreen = ExtResource( 17 )
+Player = ExtResource( 1 )
+ScoreScreen = ExtResource( 18 )
 
-[node name="CreatorScreen" parent="." instance=ExtResource( 25 )]
-
-[node name="TitleScreen" type="Node2D" parent="."]
-script = ExtResource( 19 )
-
-[node name="SpaceLogo" type="Sprite" parent="TitleScreen"]
-position = Vector2( 160, 65 )
-texture = ExtResource( 17 )
-
-[node name="BabososLogo" type="Sprite" parent="TitleScreen"]
-position = Vector2( 160, 105 )
-texture = ExtResource( 18 )
-
-[node name="PressStartText" type="Label" parent="TitleScreen"]
-visible = false
-margin_left = 98.0
-margin_top = 128.0
-margin_right = 224.0
-margin_bottom = 142.0
-custom_fonts/font = SubResource( 1 )
-text = "PRESS FIRE BUTTON TO START"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PressStartBlink" type="Timer" parent="TitleScreen"]
-wait_time = 0.2
+[node name="DelayToScoreScreen" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
 
-[node name="Tween" type="Tween" parent="TitleScreen"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleScreen"]
-anims/BabosoAnimation = SubResource( 2 )
-anims/BabosoMovement = SubResource( 3 )
-
-[node name="BabosoTitle" type="Sprite" parent="TitleScreen"]
-position = Vector2( 240, 24 )
-rotation = -1.10776
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 20 )
-hframes = 8
-script = ExtResource( 21 )
-
-[node name="SpaceTextFallSound" type="AudioStreamPlayer" parent="TitleScreen"]
-stream = ExtResource( 24 )
-
-[node name="BabososTextAppearSound" type="AudioStreamPlayer" parent="TitleScreen"]
-stream = ExtResource( 22 )
-
-[node name="BabosoEnterSound" type="AudioStreamPlayer" parent="TitleScreen"]
-stream = ExtResource( 26 )
-
-[node name="StartPressedSound" type="AudioStreamPlayer" parent="TitleScreen"]
-stream = ExtResource( 23 )
-
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
-script = ExtResource( 4 )
 
 [node name="GameOverText" type="Label" parent="GameOverScreen"]
 visible = false
@@ -209,10 +78,22 @@ margin_left = 89.0
 margin_top = 71.0
 margin_right = 231.0
 margin_bottom = 98.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 text = "GAME OVER"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="GameBeatedText" type="Label" parent="GameOverScreen"]
+visible = false
+margin_left = 89.0
+margin_top = 71.0
+margin_right = 231.0
+margin_bottom = 98.0
+custom_fonts/font = SubResource( 1 )
+text = "WELL DONE!"
+__meta__ = {
+"_edit_use_anchors_": true
 }
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -235,7 +116,7 @@ texture = ExtResource( 12 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/FrontLayer"]
-"anims/shinning stars" = SubResource( 5 )
+"anims/shinning stars" = SubResource( 2 )
 
 [node name="BackLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 0, 180 )
@@ -247,9 +128,7 @@ texture = ExtResource( 12 )
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/BackLayer"]
-"anims/shinning stars" = SubResource( 6 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
+"anims/shinning stars" = SubResource( 3 )
 
 [node name="BabososFormation" type="Node2D" parent="."]
 script = ExtResource( 2 )
@@ -291,11 +170,11 @@ script = ExtResource( 7 )
 
 [node name="NoLasersAreaLeft" type="CollisionShape2D" parent="NoLasersAllowedArea"]
 position = Vector2( 16, 90 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="NoLasersAreaRight" type="CollisionShape2D" parent="NoLasersAllowedArea"]
 position = Vector2( 304, 90 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 11 )
@@ -351,7 +230,7 @@ margin_right = 26.0
 margin_bottom = -2.0
 grow_horizontal = 2
 rect_pivot_offset = Vector2( 24, 8 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 5 )
 text = "LEVEL"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -373,3 +252,4 @@ __meta__ = {
 [node name="FlashingScore" type="Timer" parent="HUD"]
 wait_time = 0.4
 one_shot = true
+[connection signal="timeout" from="DelayToScoreScreen" to="." method="_on_DelayToScoreScreen_timeout"]
