@@ -16,6 +16,7 @@ animations = [ {
 extents = Vector2( 4, 4 )
 
 [node name="Heavy_eye" type="Area2D"]
+pause_mode = 1
 collision_layer = 8
 script = ExtResource( 1 )
 

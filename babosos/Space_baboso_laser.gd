@@ -29,7 +29,10 @@ func baboso_shoot():
 	$ShootSound.play()
 	laser.position = to_global($Sprite.position - Vector2(0, 13))
 	get_parent().get_parent().add_child(laser)
-	yield(get_tree().create_timer(0.4), "timeout")
+	$ShootingTime.start()
+	
+	
+func _on_ShootingTime_timeout():
 	$BabosoShooting.visible = false
 	$Sprite.visible = true
 	
@@ -50,5 +53,7 @@ func _on_Space_baboso_laser_area_exited(area):
 	
 func im_a_baboso():
 	pass
+
+
 
 

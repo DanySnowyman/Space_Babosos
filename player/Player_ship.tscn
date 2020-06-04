@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://player/Player_ship.gd" type="Script" id=1]
 [ext_resource path="res://player/Player_laser.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://sounds/Player_shoot.wav" type="AudioStream" id=4]
 [ext_resource path="res://gfx/Player_ship_explosion.png" type="Texture" id=5]
 [ext_resource path="res://sounds/player_explosion2.wav" type="AudioStream" id=6]
+[ext_resource path="res://gfx/Player_laser_5.png" type="Texture" id=7]
+[ext_resource path="res://gfx/Player_laser_6.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "center"
@@ -59,9 +61,18 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 7, 4.14447 )
+extents = Vector2( 7, 3.14447 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ null, ExtResource( 7 ), ExtResource( 7 ), ExtResource( 7 ), ExtResource( 8 ), null ],
+"loop": false,
+"name": "spread",
+"speed": 40.0
+} ]
 
 [node name="Player" type="Area2D"]
+pause_mode = 1
 position = Vector2( 160, 160 )
 z_index = 1
 input_pickable = false
@@ -80,7 +91,7 @@ anims/left = SubResource( 3 )
 anims/right = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.14447 )
+position = Vector2( 0, -0.85553 )
 shape = SubResource( 5 )
 
 [node name="ShootCadence" type="Timer" parent="."]
@@ -99,4 +110,9 @@ hframes = 6
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -2.019
+
+[node name="LaserSpread" type="AnimatedSprite" parent="."]
+position = Vector2( 0.5, -16 )
+frames = SubResource( 6 )
+animation = "spread"
 [connection signal="area_shape_entered" from="." to="." method="_on_Player_area_shape_entered"]

@@ -126,6 +126,7 @@ tracks/0/keys = {
 [node name="Space_baboso_fiery" type="Area2D" groups=[
 "total_babosos",
 ]]
+pause_mode = 1
 position = Vector2( 80, 48 )
 collision_layer = 2
 collision_mask = 5
@@ -148,6 +149,7 @@ anims/win = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 4 )
 volume_db = -4.039
 
@@ -157,6 +159,7 @@ stream = ExtResource( 5 )
 volume_db = -4.289
 
 [node name="FailSound" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 6 )
 volume_db = -5.913
 

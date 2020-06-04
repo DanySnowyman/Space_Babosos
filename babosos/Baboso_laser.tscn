@@ -17,6 +17,7 @@ animations = [ {
 extents = Vector2( 3.00499, 12.0122 )
 
 [node name="Baboso_laser" type="Area2D"]
+pause_mode = 1
 collision_layer = 8
 script = ExtResource( 3 )
 __meta__ = {

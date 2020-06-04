@@ -62,6 +62,7 @@ extents = Vector2( 8, 6 )
 [node name="Space_baboso_laser" type="Area2D" groups=[
 "total_babosos",
 ]]
+pause_mode = 1
 position = Vector2( 80, 48 )
 collision_layer = 2
 collision_mask = 21
@@ -92,12 +93,19 @@ anims/win = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 4 )
 volume_db = -4.039
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
 position = Vector2( -80, -48 )
 stream = ExtResource( 3 )
+
+[node name="ShootingTime" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 [connection signal="area_entered" from="." to="." method="_on_Space_baboso_laser_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Space_baboso_laser_area_exited"]
 [connection signal="area_shape_entered" from="." to="." method="_on_Baboso_get_hit_by_Player_laser"]
+[connection signal="timeout" from="ShootingTime" to="." method="_on_ShootingTime_timeout"]

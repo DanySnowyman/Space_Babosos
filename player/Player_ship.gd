@@ -3,14 +3,16 @@ extends Area2D
 export (PackedScene) var Laser
 var screen_size
 var speed = 130
-var can_control = false
-var can_dead = true
+var can_control
+var can_shoot
+var can_dead
 
 func _ready():
 	add_to_group("Player")
 	self.position = Vector2(160, 160)
 	screen_size = get_viewport_rect().size
 	can_control = true
+	can_shoot = false
 	can_dead = true
 	$ShipExplosion.visible = false
 	
@@ -73,13 +75,17 @@ func _process(delta):
 			$Sprite.frame = 0
 		
 		if Input.is_action_pressed("ui_accept") and $ShootCadence.is_stopped():
-			var shoot = Laser.instance()
-			shoot.position += self.position
-			shoot.position.y -= 14
-			shoot.position.x += 0.5
-			get_parent().add_child(shoot)
-			$LaserSound.play()
-			$ShootCadence.start()
+			if can_shoot == true:
+				var shoot = Laser.instance()
+				shoot.position += self.position
+				shoot.position.y -= 14
+				shoot.position.x += 0.5
+				get_parent().add_child(shoot)
+				$LaserSpread.frame = 0
+				$LaserSpread.play("spread")
+				$LaserSound.play()
+				$ShootCadence.start()
+				if $LaserSpread.frame > 4: $LaserSpread.stop()
 
 
 func _on_Player_area_shape_entered(_area_id, area, _area_shape, _self_shape):

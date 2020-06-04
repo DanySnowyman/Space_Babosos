@@ -649,7 +649,7 @@ func baboso_basic_shoot():
 			$BulletPause.start()
 			formation_can_move = false
 			next_shooting_baboso.baboso_shoot()
-			bullet.position = next_shooting_baboso.global_position
+			bullet.position = next_shooting_baboso.global_position + Vector2(0, 2)
 			get_parent().add_child(bullet)
 			baboso_basic_cadence()
 	
@@ -700,6 +700,7 @@ func baboso_chief_appear():
 
 func on_game_over():
 	is_game_over = true
+	game_has_start = false
 	get_tree().call_group("total_babosos", "on_game_over")
 	tween.interpolate_property(self, "position", self.position,
 			self.position + Vector2(0, 200), 10,

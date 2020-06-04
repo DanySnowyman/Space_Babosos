@@ -30,13 +30,12 @@ func _ready():
 	yield(get_tree().create_timer(1.5), "timeout")
 	show_press_fire = true
 	get_tree().call_group("Main", "call_hi_score")
+	$PressEscText.show()
+	$PressStartText.show()
 
 
-func press_start_blink():
-	$PressStartText.visible = true
-	yield(get_tree().create_timer(0.5), "timeout")
-	$PressStartText.visible = false
-	$PressStartBlink.start()
+func _on_PressStartBlink_timeout():
+	$PressStartText.visible = !$PressStartText.visible
 
 
 func baboso_enter_sound():
@@ -46,13 +45,25 @@ func baboso_enter_sound():
 
 func remove():
 	$StartPressedSound.play()
+	$PressStartBlink.start(0.1)
+	$PressEscText.hide()
 	yield($StartPressedSound, "finished")
-	queue_free()
+	self.call_deferred("queue_free")
+	
+	
+func return_to_desktop():
+	$PressStartText.text = "SEE YOU LATER!"
+	$StartPressedSound.play()
+	$PressStartBlink.start(0.1)
+	$PressEscText.hide()
+	yield($StartPressedSound, "finished")
+	
 	
 
 func _process(delta):
 	if show_press_fire == true and $PressStartBlink.is_stopped():
-		press_start_blink()
+		$PressStartBlink.start(0.5)
+		
 		
 	if $SpaceLogo.position.y >= 63 and has_sounded == false:
 		$SpaceTextFallSound.play()
@@ -60,3 +71,5 @@ func _process(delta):
 	
 	if $SpaceLogo.position.y < 60:
 		has_sounded = false
+
+

@@ -16,6 +16,7 @@ animations = [ {
 extents = Vector2( 3, 3 )
 
 [node name="Baboso_bullet" type="Area2D"]
+pause_mode = 1
 collision_layer = 8
 script = ExtResource( 1 )
 
