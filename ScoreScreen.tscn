@@ -151,7 +151,6 @@ visible = false
 [node name="Basic" type="AnimatedSprite" parent="CharactersScreen/BasicRow"]
 position = Vector2( 84, 45 )
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="BasicText" type="Label" parent="CharactersScreen/BasicRow"]
@@ -193,6 +192,7 @@ visible = false
 [node name="Laser" type="AnimatedSprite" parent="CharactersScreen/LaserRow"]
 position = Vector2( 84, 68 )
 frames = SubResource( 7 )
+frame = 1
 playing = true
 
 [node name="LaserText" type="Label" parent="CharactersScreen/LaserRow"]
@@ -235,7 +235,6 @@ visible = false
 [node name="Fiery" type="AnimatedSprite" parent="CharactersScreen/FieryRow"]
 position = Vector2( 84, 91 )
 frames = SubResource( 10 )
-frame = 1
 playing = true
 
 [node name="FieryText" type="Label" parent="CharactersScreen/FieryRow"]
@@ -277,6 +276,7 @@ visible = false
 [node name="Heavy" type="AnimatedSprite" parent="CharactersScreen/HeavyRow"]
 position = Vector2( 84, 114 )
 frames = SubResource( 13 )
+frame = 1
 playing = true
 
 [node name="HeavyText" type="Label" parent="CharactersScreen/HeavyRow"]
@@ -318,7 +318,6 @@ visible = false
 [node name="Chief" type="AnimatedSprite" parent="CharactersScreen/ChiefRow"]
 position = Vector2( 84, 137 )
 frames = SubResource( 16 )
-frame = 1
 playing = true
 
 [node name="ChiefText" type="Label" parent="CharactersScreen/ChiefRow"]
@@ -360,7 +359,7 @@ visible = false
 [node name="Player" type="AnimatedSprite" parent="CharactersScreen/PlayerRow"]
 position = Vector2( 84, 160 )
 frames = SubResource( 22 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="PlayerText" type="Label" parent="CharactersScreen/PlayerRow"]
@@ -400,6 +399,7 @@ __meta__ = {
 visible = false
 
 [node name="HowToPlayTitle" type="Label" parent="HowToPlayScreen"]
+visible = false
 margin_left = 108.0
 margin_top = 22.0
 margin_right = 218.0
@@ -411,49 +411,57 @@ __meta__ = {
 }
 
 [node name="HowToPlay1" type="Label" parent="HowToPlayScreen"]
-margin_left = 54.0
-margin_top = 50.0
-margin_right = 280.0
-margin_bottom = 64.0
+visible = false
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 274.0
+margin_bottom = 62.0
 custom_fonts/font = SubResource( 24 )
 text = "Defend the Earth against the devilish Space Babosos."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HowToPlay2" type="Label" parent="HowToPlayScreen"]
+visible = false
 margin_left = 54.0
-margin_top = 70.0
+margin_top = 68.0
 margin_right = 277.0
-margin_bottom = 110.0
+margin_bottom = 108.0
 custom_fonts/font = SubResource( 24 )
 text = "Destroy consecutive same-type Babosos to increase the combo multiplier.
 Get killed and the combo counter will reset."
+align = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HowToPlay3" type="Label" parent="HowToPlayScreen"]
-margin_left = 54.0
-margin_top = 112.0
-margin_right = 263.0
-margin_bottom = 153.0
+visible = false
+margin_left = 56.0
+margin_top = 110.0
+margin_right = 265.0
+margin_bottom = 151.0
 custom_fonts/font = SubResource( 24 )
 text = "You only have three ships, but if the Babosos formation catch you at the bottom line...
 Game will over no matter how many lives remains!"
+align = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HowToPlay4" type="Label" parent="HowToPlayScreen"]
-margin_left = 54.0
-margin_top = 152.0
-margin_right = 263.0
-margin_bottom = 193.0
+visible = false
+margin_left = 56.0
+margin_top = 150.0
+margin_right = 265.0
+margin_bottom = 191.0
 custom_fonts/font = SubResource( 24 )
 text = "Controls are easy! Only LEFT-RIGHT and FIRE!"
+align = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

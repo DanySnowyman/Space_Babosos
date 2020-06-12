@@ -32,6 +32,8 @@ func _on_Baboso_get_hit_by_Player_laser(_area_id, area, _area_shape, _self_shape
 			left_eye_eyection()
 			right_eye_eyection()
 			yield($AnimationPlayer, "animation_finished")
+			$CollisionShape2D.disabled = true
+			yield(get_tree().create_timer(1), "timeout")
 			queue_free()
 			
 

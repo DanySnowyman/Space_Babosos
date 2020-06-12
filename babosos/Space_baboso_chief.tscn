@@ -40,7 +40,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 12, 4 )
+extents = Vector2( 11, 4 )
 
 [node name="Space_baboso_chief" type="Area2D"]
 pause_mode = 1

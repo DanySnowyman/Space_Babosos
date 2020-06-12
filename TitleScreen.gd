@@ -12,7 +12,8 @@ func _ready():
 	$BabososLogo.position = Vector2(160, 105)
 	$SpaceLogo.visible = true
 	$BabososLogo.visible = true
-	$BabosoTitle.visible = false
+	$BabosoTitleGreen.visible = false
+	$BabosoTitleBlue.visible = false
 	tween.interpolate_property($SpaceLogo, "position",
 			$SpaceLogo.position, Vector2(160, 65), 2,
 			Tween.TRANS_BOUNCE, Tween.EASE_OUT)
@@ -24,9 +25,9 @@ func _ready():
 	tween.start()
 	yield(tween, "tween_all_completed")
 	baboso_enter_sound()
-	$AnimationPlayer.play("BabosoMovement")
-	yield($AnimationPlayer, "animation_finished")
-	$AnimationPlayer.play("BabosoAnimation")
+	$BabososAnimation.play("default")
+	$BabososMovement.play("default")
+	yield($BabososMovement, "animation_finished")
 	yield(get_tree().create_timer(1.5), "timeout")
 	show_press_fire = true
 	get_tree().call_group("Main", "call_hi_score")

@@ -14,11 +14,13 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 3.00499, 12.0122 )
+extents = Vector2( 3.00499, 14.0122 )
 
 [node name="Baboso_laser" type="Area2D"]
 pause_mode = 1
+z_index = 1
 collision_layer = 8
+collision_mask = 5
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
@@ -29,7 +31,7 @@ light_mask = 2
 frames = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 3.01216 )
+position = Vector2( 0, 1.01216 )
 shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

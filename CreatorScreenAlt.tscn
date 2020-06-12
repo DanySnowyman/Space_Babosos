@@ -1,0 +1,133 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://fonts/BMmini.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://titles/Godot_icon_pixel_art.png" type="Texture" id=2]
+[ext_resource path="res://CreatorScreenAlt.gd" type="Script" id=3]
+[ext_resource path="res://gfx/Red_light_for_fonts.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="CreatorScreen" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 96, 70 )
+scale = Vector2( 0.5, 0.375 )
+texture = ExtResource( 4 )
+color = Color( 1, 0, 0, 1 )
+mode = 2
+shadow_color = Color( 1, 0, 0, 0 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 136, 70 )
+scale = Vector2( 0.5, 0.375 )
+texture = ExtResource( 4 )
+color = Color( 1, 0, 0, 1 )
+mode = 2
+shadow_color = Color( 1, 0, 0, 0 )
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 84, 134 )
+scale = Vector2( 0.5, 0.375 )
+texture = ExtResource( 4 )
+color = Color( 1, 0, 0, 1 )
+mode = 2
+shadow_color = Color( 1, 0, 0, 0 )
+
+[node name="Light2D4" type="Light2D" parent="."]
+position = Vector2( 138, 134 )
+scale = Vector2( 0.5, 0.375 )
+texture = ExtResource( 4 )
+color = Color( 1, 0, 0, 1 )
+mode = 2
+shadow_color = Color( 1, 0, 0, 0 )
+
+[node name="AGameBy" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 56.0
+margin_top = 40.0
+margin_right = 152.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 1 )
+text = "A game by..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DanySnowyman" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 80.0
+margin_top = 64.0
+margin_right = 216.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 2 )
+text = "@DanySnowyman"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MadeWith" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 56.0
+margin_top = 104.0
+margin_right = 150.0
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 5 )
+text = "Made with..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GodotEngine" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 80.0
+margin_top = 128.0
+margin_right = 188.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 6 )
+text = "Godot Engine"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GodotLogo" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 224, 128 )
+frames = SubResource( 13 )
+frame = 12
+
+[node name="Tween" type="Tween" parent="."]

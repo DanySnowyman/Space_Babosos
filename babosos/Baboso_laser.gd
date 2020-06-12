@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 80
+var speed = 100
 
 
 func _process(delta):
@@ -13,3 +13,7 @@ func _process(delta):
 func _on_VisibilityNotifier2D_screen_exited():
 	yield(get_tree().create_timer(1), "timeout")
 	queue_free()
+
+
+func im_baboso_laser():
+	pass

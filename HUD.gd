@@ -8,10 +8,28 @@ var multiplier = 1
 var last_defeated
 var hi_score_beated = false
 
+
 func show_hi_score():
+	load_hi_score()
 	$HiScore.visible = true
 	$HiScore.text = "HI-SCORE " + str(hi_score)
 	
+	
+func save_hi_score():
+	var file = File.new()
+	file.open_encrypted_with_pass("user://saved_data.save", File.WRITE, OS.get_unique_id())
+	file.store_string(to_json(hi_score))
+	file.close()
+	
+	
+func load_hi_score():
+	var file = File.new()
+	if file.file_exists("user://saved_data.save"):
+		file.open_encrypted_with_pass("user://saved_data.save", File.READ, OS.get_unique_id())
+		var data = parse_json(file.get_as_text())
+		file.close()
+		hi_score = data
+
 	
 func game_start():
 	add_to_group("HUD")
@@ -36,13 +54,13 @@ func announce_level(level):
 	$Combo.add_color_override("font_color", Color(1, 1, 1))
 	$LevelSign.text = "LEVEL " + str(level)
 	$LevelSign.visible = true
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(2.5), "timeout")
 	$LevelSign.visible = false
 
 
 func substract_lives():
-	yield(get_tree().create_timer(0.2), "timeout")
 	if lives > 0:
+		yield(get_tree().create_timer(0.2), "timeout")
 		lives -= 1
 		combo = 0
 		$Combo.text = "COMBO " + "x " + str(combo)
@@ -108,6 +126,8 @@ func on_game_over():
 	$Combo.visible = false
 	if hi_score_beated == true:
 		hi_score = score
+		save_hi_score()
+
 
 func _physics_process(delta):
 	if score > hi_score and hi_score_beated == false:

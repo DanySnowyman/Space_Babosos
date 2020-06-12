@@ -116,3 +116,5 @@ position = Vector2( 0.5, -16 )
 frames = SubResource( 6 )
 animation = "spread"
 [connection signal="area_shape_entered" from="." to="." method="_on_Player_area_shape_entered"]
+[connection signal="call_ending" from="." to="." method="_on_Player_call_ending" flags=6]
+[connection signal="return_home" from="." to="." method="_on_Player_return_home"]

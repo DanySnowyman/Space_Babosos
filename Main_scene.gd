@@ -6,8 +6,8 @@ export (PackedScene) var TitleScreen
 export (PackedScene) var Player
 export (PackedScene) var BabososFormation
 export (PackedScene) var ScoreScreen
-
-
+export (PackedScene) var GameBeatedScreen
+ 
 var waiting_for_start = false
 var showing_score_screen = false
 var level = 1
@@ -60,7 +60,7 @@ func start_new_game():
 	$TitleScreen.remove()
 	yield($TitleScreen.remove(), "completed")
 	$HUD/HiScore.visible = false
-	level = 1
+	level = 11
 	$HUD.announce_level(level)
 	yield($HUD.announce_level(level), "completed")
 	add_child(babosos_formation)
@@ -74,17 +74,20 @@ func start_new_game():
 func prepare_next_level():
 	$Player.can_shoot = false
 	level += 1
-	if level > 10:
-		game_beated()
-	else:
-		$HUD.announce_level(level)
-		yield($HUD.announce_level(level), "completed")
-		$BabososFormation.game_start(level)
-		yield(get_tree().create_timer(1.5), "timeout")
-		$Player.can_shoot = true
+	if $BabososFormation.is_game_over == false:
+		if level > 10:
+			game_beated()
+		else:
+			$HUD.announce_level(level)
+			yield($HUD.announce_level(level), "completed")
+			$BabososFormation.game_start(level)
+			yield(get_tree().create_timer(1.5), "timeout")
+			$Player.can_shoot = true
 	
 	
 func game_over():
+	$BabososFormation.is_game_over = true
+	yield(get_tree().create_timer(1), "timeout")
 	$BabososFormation.on_game_over()
 	get_tree().call_group("total_babosos", "on_game_over")
 	yield(get_tree().create_timer(1), "timeout")
@@ -98,14 +101,18 @@ func game_over():
 	
 
 func game_beated():
-	yield(get_tree().create_timer(1), "timeout")
-	$GameOverScreen/GameBeatedText.visible = true
-	yield(get_tree().create_timer(5), "timeout")
-	$GameOverScreen/GameBeatedText.visible = false
-	$Player.queue_free()
 	$HUD.on_game_over()
-	show_title_screen()
+	yield(get_tree().create_timer(1),"timeout")
+	$Player.game_beated = true
 
+
+func show_ending():
+	var congratulations = GameBeatedScreen.instance()
+	$ParallaxBackground.fade_out()
+	yield(get_tree().create_timer(2),"timeout")
+	add_child(congratulations)
+	yield(get_tree().create_timer(5),"timeout")
+	
 
 func _process(delta):
 	if waiting_for_start == true and Input.is_action_pressed("ui_accept"):

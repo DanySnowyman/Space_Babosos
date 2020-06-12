@@ -27,6 +27,8 @@ func _ready():
 	$HowToPlayScreen/HowToPlay2.visible = true
 	yield(get_tree().create_timer(2), "timeout")
 	$HowToPlayScreen/HowToPlay3.visible = true
+	yield(get_tree().create_timer(2), "timeout")
+	$HowToPlayScreen/HowToPlay4.visible = true
 	yield(get_tree().create_timer(10), "timeout")
 	
 	queue_free()

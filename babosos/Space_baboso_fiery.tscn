@@ -35,10 +35,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 2, 3, 4 ]
+"values": [ 2, 3, 4, 8 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -86,10 +86,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 4, 5, 6 ]
+"values": [ 4, 5, 6, 9 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -137,8 +137,8 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-hframes = 8
-frame = 6
+hframes = 9
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )
@@ -170,7 +170,8 @@ script = ExtResource( 7 )
 
 [node name="AttackSprite" type="Sprite" parent="FieryInAction"]
 texture = ExtResource( 3 )
-hframes = 9
+hframes = 10
+frame = 9
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="FieryInAction"]
 anims/attack = SubResource( 5 )
