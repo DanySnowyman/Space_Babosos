@@ -2,7 +2,7 @@ extends CanvasLayer
 
 var lives = 3
 var score = 0
-var hi_score = 5000
+var hi_score = 100000
 var combo = 0
 var multiplier = 1
 var last_defeated
@@ -11,6 +11,8 @@ var hi_score_beated = false
 
 func show_hi_score():
 	load_hi_score()
+	if hi_score == null:
+		hi_score = 100000
 	$HiScore.visible = true
 	$HiScore.text = "HI-SCORE " + str(hi_score)
 	

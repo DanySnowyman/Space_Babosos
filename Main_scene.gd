@@ -16,8 +16,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	var creator_screen = CreatorScreen.instance()
 	add_to_group("Main")
-#	add_child(creator_screen)
-#	yield($CreatorScreen._ready(), "completed")
+	add_child(creator_screen)
+	yield($CreatorScreen._ready(), "completed")
 	show_title_screen()
 	
 	
@@ -60,7 +60,7 @@ func start_new_game():
 	$TitleScreen.remove()
 	yield($TitleScreen.remove(), "completed")
 	$HUD/HiScore.visible = false
-	level = 11
+	level = 1
 	$HUD.announce_level(level)
 	yield($HUD.announce_level(level), "completed")
 	add_child(babosos_formation)

@@ -112,6 +112,6 @@ func im_a_baboso():
 	pass
 
 
-func _on_FieryInAction_hits_player(area_id, area, area_shape, self_shape):
+func _on_FieryInAction_hits_player(_area_id, area, _area_shape, _self_shape):
 	if area.has_method("im_the_player"):
 		has_killed_player = true
