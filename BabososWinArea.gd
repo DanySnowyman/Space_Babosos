@@ -4,5 +4,5 @@ func _ready():
 	pass
 
 
-func babosos_win():
+func babosos_limit_area():
 	pass

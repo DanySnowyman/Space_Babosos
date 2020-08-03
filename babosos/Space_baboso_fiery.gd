@@ -4,7 +4,7 @@ onready var tween = $FieryInAction/Tween
 
 var is_retreating = false
 var velocity = Vector2()
-var retreating_speed = 50
+var retreating_speed = 60
 var actual_fiery_position = Vector2()
 var has_killed_player = false
 
@@ -84,6 +84,8 @@ func on_game_over():
 func _on_Space_baboso_fiery_area_entered(area):
 	if area.has_method("no_lasers_allowed"):
 		add_to_group("no_ready_members")
+	if area.has_method("babosos_limit_area"):
+		add_to_group("babosos_on_the_limit")
 		
 
 func _on_Space_baboso_fiery_area_exited(area):

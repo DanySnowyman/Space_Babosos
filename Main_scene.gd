@@ -66,7 +66,7 @@ func start_new_game():
 	$IntroMusic.stop()
 	yield($TitleScreen.remove(), "completed")
 	$HUD/HiScore.visible = false
-	level = 11
+	level = 5
 	$HUD.announce_level(level)
 	yield($HUD.announce_level(level), "completed")
 	add_child(babosos_formation)
@@ -105,10 +105,6 @@ func game_over():
 	$GameOverScreen/GameOverText.visible = false
 	$HUD.on_game_over()
 	show_title_screen()
-	
-	
-func babosos_reach_win_area():
-	pass
 	
 
 func game_beated():

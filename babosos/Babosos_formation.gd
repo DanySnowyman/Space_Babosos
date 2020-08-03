@@ -603,7 +603,8 @@ func if_border_reached():
 		if left_border_reached(baboso) or right_border_reached(baboso):
 			get_down()
 			velocity = -velocity
-			speed += 7
+			if speed < 140:
+				speed += 10
 			break
 
 
@@ -622,12 +623,14 @@ func right_border_reached(baboso):
 
 
 func get_down():
-	formation_getting_down = true
-	tween.interpolate_property(self, "position",
-			position, position + Vector2(0, 16), 0.5,
-			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-	tween.start()
-	formation_getting_down = false
+	var babosos_on_limit = get_tree().get_nodes_in_group("babosos_on_the_limit")
+	if babosos_on_limit.size() == 0:
+		formation_getting_down = true
+		tween.interpolate_property(self, "position",
+				position, position + Vector2(0, 16), 0.5,
+				Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.start()
+		formation_getting_down = false
 
 
 func baboso_basic_shoot():

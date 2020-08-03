@@ -46,6 +46,8 @@ func on_game_over():
 func _on_Space_baboso_laser_area_entered(area):
 	if area.has_method("no_lasers_allowed"):
 		add_to_group("no_ready_members")
+	if area.has_method("babosos_limit_area"):
+		add_to_group("babosos_on_the_limit")
 	
 	
 func _on_Space_baboso_laser_area_exited(area):

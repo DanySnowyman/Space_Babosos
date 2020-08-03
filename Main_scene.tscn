@@ -85,7 +85,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 160, 4 )
+extents = Vector2( 160, 10 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 16, 90 )
@@ -214,11 +214,13 @@ __meta__ = {
 [node name="BabososFormation" parent="." instance=ExtResource( 2 )]
 pause_mode = 0
 
-[node name="BabososWinArea" type="Area2D" parent="."]
+[node name="BabososLimitArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource( 9 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BabososWinArea"]
-position = Vector2( 160, 176 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BabososLimitArea"]
+position = Vector2( 160, 170 )
 shape = SubResource( 5 )
 
 [node name="NoLasersAllowedArea" type="Area2D" parent="."]
