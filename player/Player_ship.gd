@@ -1,13 +1,18 @@
 extends Area2D
 
 export (PackedScene) var Laser
+export (PackedScene) var Exhaust
+export (PackedScene) var Trace
+
 var screen_size
 var speed = 130
 var can_control
 var can_shoot
 var can_dead
+
 var game_beated = false
 var in_center = false
+var exhaust_added = false
 var delayed = false
 
 signal return_home
@@ -15,7 +20,7 @@ signal call_ending
 
 func _ready():
 	add_to_group("Player")
-	self.position = Vector2(100, 160)
+	self.position = Vector2(160, 160)
 	screen_size = get_viewport_rect().size
 	can_control = true
 	can_shoot = false
@@ -111,6 +116,8 @@ func player_control(delta, velocity):
 	
 
 func ending_sequence(delta, velocity):
+	var exhaust = Exhaust.instance()
+	var trace = Trace.instance()
 	
 	if (self.position - Vector2(160, 160)).length() > 1 and in_center == false:
 		speed = 50
@@ -123,16 +130,25 @@ func ending_sequence(delta, velocity):
 
 	if in_center == true:
 		$Sprite.frame = 0
+		if exhaust_added == false:
+			exhaust.position == self.position
+			exhaust.position.y += 13
+			add_child(exhaust)
+			exhaust_added = true
+			$EngineFire.start_engine()
 		if delayed == false:
 			yield(get_tree().create_timer(2), "timeout")
 			delayed = true
 		velocity = Vector2(0, -1)
+		$EngineFire.engine_ready()
+		trace.position += self.position
+		trace.position.y += 16
+		get_parent().add_child(trace)
 		emit_signal("return_home")
 		if self.position.y < 0:
 			emit_signal("call_ending")
-		if self.position.y < -200:
+		if self.position.y < -1000:
 			queue_free()
-			print("byeplayer")
 
 	position += (velocity * speed) * delta
 	

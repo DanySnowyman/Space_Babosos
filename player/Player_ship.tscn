@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/Player_ship.gd" type="Script" id=1]
 [ext_resource path="res://player/Player_laser.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://sounds/player_explosion2.wav" type="AudioStream" id=6]
 [ext_resource path="res://gfx/Player_laser_5.png" type="Texture" id=7]
 [ext_resource path="res://gfx/Player_laser_6.png" type="Texture" id=8]
+[ext_resource path="res://player/Engine_trace.tscn" type="PackedScene" id=9]
+[ext_resource path="res://player/Engine_fire.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "center"
@@ -79,6 +81,8 @@ input_pickable = false
 collision_mask = 10
 script = ExtResource( 1 )
 Laser = ExtResource( 2 )
+Exhaust = ExtResource( 10 )
+Trace = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )

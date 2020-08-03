@@ -222,10 +222,13 @@ stream = ExtResource( 10 )
 
 [node name="BabososTextAppearSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -3.0
 
 [node name="BabosoEnterSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -5.0
 
 [node name="StartPressedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = -6.0
 [connection signal="timeout" from="PressStartBlink" to="." method="_on_PressStartBlink_timeout"]

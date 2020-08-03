@@ -1,10 +1,14 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://player/Player_ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://BabososFormation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sounds/Pause.wav" type="AudioStream" id=3]
 [ext_resource path="res://GameBeated.tscn" type="PackedScene" id=4]
+[ext_resource path="res://music/Intro.ogg" type="AudioStream" id=5]
+[ext_resource path="res://music/Game Over.ogg" type="AudioStream" id=6]
 [ext_resource path="res://LaserExclusionArea.gd" type="Script" id=7]
+[ext_resource path="res://music/Victory.ogg" type="AudioStream" id=8]
+[ext_resource path="res://BabososWinArea.gd" type="Script" id=9]
 [ext_resource path="res://fonts/BMmini8px.tres" type="DynamicFont" id=10]
 [ext_resource path="res://HUD.gd" type="Script" id=11]
 [ext_resource path="res://gfx/Stars_background.png" type="Texture" id=12]
@@ -81,24 +85,27 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 16, 90 )
+extents = Vector2( 160, 4 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 8
-font_data = ExtResource( 15 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 16, 90 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 8
 font_data = ExtResource( 15 )
 
 [sub_resource type="DynamicFont" id=8]
-font_data = ExtResource( 15 )
-
-[sub_resource type="DynamicFont" id=9]
 size = 8
 font_data = ExtResource( 15 )
 
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 15 )
+
 [sub_resource type="DynamicFont" id=10]
+size = 8
+font_data = ExtResource( 15 )
+
+[sub_resource type="DynamicFont" id=11]
 size = 26
 font_data = ExtResource( 15 )
 
@@ -207,6 +214,13 @@ __meta__ = {
 [node name="BabososFormation" parent="." instance=ExtResource( 2 )]
 pause_mode = 0
 
+[node name="BabososWinArea" type="Area2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BabososWinArea"]
+position = Vector2( 160, 176 )
+shape = SubResource( 5 )
+
 [node name="NoLasersAllowedArea" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 2
@@ -214,11 +228,11 @@ script = ExtResource( 7 )
 
 [node name="NoLasersAreaLeft" type="CollisionShape2D" parent="NoLasersAllowedArea"]
 position = Vector2( 16, 90 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="NoLasersAreaRight" type="CollisionShape2D" parent="NoLasersAllowedArea"]
 position = Vector2( 304, 90 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 11 )
@@ -243,7 +257,7 @@ margin_top = 170.0
 margin_right = 313.0
 margin_bottom = 178.0
 grow_horizontal = 0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "LIVES"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -256,7 +270,7 @@ margin_top = 170.0
 margin_right = 173.0
 margin_bottom = 178.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "COMBO"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -274,7 +288,7 @@ margin_right = 26.0
 margin_bottom = -2.0
 grow_horizontal = 2
 rect_pivot_offset = Vector2( 24, 8 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 text = "LEVEL"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -287,7 +301,7 @@ margin_top = 170.0
 margin_right = 179.0
 margin_bottom = 178.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 text = "HI-SCORE"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -305,10 +319,22 @@ margin_left = 89.0
 margin_top = 71.0
 margin_right = 231.0
 margin_bottom = 98.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 text = "GAME OVER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="IntroMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 8.0
+
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 8.0
+
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = 8.0
 [connection signal="timeout" from="DelayToScoreScreen" to="." method="_on_DelayToScoreScreen_timeout"]
 [connection signal="timeout" from="PauseScreen/BlinkTextTimer" to="PauseScreen" method="_on_BlinkTextTimer_timeout"]

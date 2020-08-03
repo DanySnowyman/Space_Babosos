@@ -15,18 +15,23 @@ var level = 1
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	var creator_screen = CreatorScreen.instance()
+	$IntroMusic.play()
 	add_to_group("Main")
-	add_child(creator_screen)
-	yield($CreatorScreen._ready(), "completed")
+#	add_child(creator_screen)
+#	yield($CreatorScreen._ready(), "completed")
 	show_title_screen()
 	
 	
 func show_title_screen():
 	var title_screen = TitleScreen.instance()
 	add_child(title_screen)
+	if $IntroMusic.is_playing() == false:
+		$IntroMusic.play(8)
+	else: pass
 	yield($TitleScreen._ready(), "completed")
 	$DelayToScoreScreen.start()
 	waiting_for_start = true
+		
 	
 	
 func _on_DelayToScoreScreen_timeout():
@@ -58,9 +63,10 @@ func start_new_game():
 	$DelayToScoreScreen.stop()
 	waiting_for_start = false
 	$TitleScreen.remove()
+	$IntroMusic.stop()
 	yield($TitleScreen.remove(), "completed")
 	$HUD/HiScore.visible = false
-	level = 1
+	level = 11
 	$HUD.announce_level(level)
 	yield($HUD.announce_level(level), "completed")
 	add_child(babosos_formation)
@@ -88,6 +94,7 @@ func prepare_next_level():
 func game_over():
 	$BabososFormation.is_game_over = true
 	yield(get_tree().create_timer(1), "timeout")
+	$GameOverMusic.play()
 	$BabososFormation.on_game_over()
 	get_tree().call_group("total_babosos", "on_game_over")
 	yield(get_tree().create_timer(1), "timeout")
@@ -98,6 +105,10 @@ func game_over():
 	$GameOverScreen/GameOverText.visible = false
 	$HUD.on_game_over()
 	show_title_screen()
+	
+	
+func babosos_reach_win_area():
+	pass
 	
 
 func game_beated():
@@ -111,7 +122,8 @@ func show_ending():
 	$ParallaxBackground.fade_out()
 	yield(get_tree().create_timer(2),"timeout")
 	add_child(congratulations)
-	yield(get_tree().create_timer(5),"timeout")
+	yield(get_tree().create_timer(2),"timeout")
+	$VictoryMusic.play()
 	
 
 func _process(delta):
@@ -142,3 +154,5 @@ func _process(delta):
 			$TitleScreen.return_to_desktop()
 			yield($TitleScreen.return_to_desktop(), "completed")
 			get_tree().quit()
+
+

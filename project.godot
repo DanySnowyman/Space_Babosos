@@ -37,3 +37,9 @@ window/stretch/aspect="keep"
 2d_physics/layer_4="Enemy bullets"
 2d_physics/layer_5="Laser exclusion"
 2d_physics/layer_6="Player bullet detector"
+
+[rendering]
+
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
+quality/filters/anisotropic_filter_level=2
