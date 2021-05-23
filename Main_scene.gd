@@ -17,8 +17,8 @@ func _ready():
 	var creator_screen = CreatorScreen.instance()
 	$IntroMusic.play()
 	add_to_group("Main")
-#	add_child(creator_screen)
-#	yield($CreatorScreen._ready(), "completed")
+	add_child(creator_screen)
+	yield($CreatorScreen._ready(), "completed")
 	show_title_screen()
 	
 	
@@ -66,7 +66,7 @@ func start_new_game():
 	$IntroMusic.stop()
 	yield($TitleScreen.remove(), "completed")
 	$HUD/HiScore.visible = false
-	level = 5
+	level = 1
 	$HUD.announce_level(level)
 	yield($HUD.announce_level(level), "completed")
 	add_child(babosos_formation)
@@ -122,7 +122,7 @@ func show_ending():
 	$VictoryMusic.play()
 	
 
-func _process(delta):
+func _process(_delta):
 	if waiting_for_start == true and Input.is_action_pressed("ui_accept"):
 		start_new_game()
 	
@@ -135,7 +135,7 @@ func _process(delta):
 		waiting_for_start = true
 		$DelayToScoreScreen.start()
 
-	if Input.is_action_just_released("ui_cancel"):
+	if Input.is_action_just_released("ui_select"):
 		if $BabososFormation.game_has_start == true:
 			yield(get_tree().create_timer(0.2), "timeout")
 			if $PauseScreen/PauseSound.is_playing() == false:

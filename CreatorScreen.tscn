@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://fonts/BMmini.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://titles/Godot_icon_pixel_art.png" type="Texture" id=2]
@@ -40,6 +40,10 @@ animations = [ {
 "name": "default",
 "speed": 10.0
 } ]
+
+[sub_resource type="DynamicFont" id=10]
+size = 8
+font_data = ExtResource( 1 )
 
 [node name="CreatorScreen" type="Node2D"]
 script = ExtResource( 4 )
@@ -131,3 +135,30 @@ frames = SubResource( 9 )
 frame = 11
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="VersionText" type="Label" parent="."]
+margin_left = 87.0
+margin_top = 155.0
+margin_right = 233.0
+margin_bottom = 174.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.423529, 0.423529, 0.423529, 1 )
+text = "- Ver 1.01 -
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CopyrightText" type="Label" parent="."]
+margin_left = 87.0
+margin_top = 165.0
+margin_right = 233.0
+margin_bottom = 184.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.423529, 0.423529, 0.423529, 1 )
+text = "Copyright (C) 2020 Daniel Nevado"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

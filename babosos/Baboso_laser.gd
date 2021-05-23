@@ -2,6 +2,8 @@ extends Area2D
 
 var speed = 100
 
+func _ready():
+	$AnimatedSprite.visible = true
 
 func _process(delta):
 	$AnimatedSprite.play("default")

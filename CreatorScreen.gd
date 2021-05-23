@@ -3,14 +3,18 @@ extends Node2D
 onready var tween = $Tween
 
 func _ready():
-	#A Game By...
 	yield(get_tree().create_timer(1), "timeout")
+	#A Game By...
 	tween.interpolate_property($AGameBy, "modulate:a", 0, 1, 1, Tween.TRANS_QUAD/
 			Tween.EASE_OUT)
 	tween.start()
 	yield(get_tree().create_timer(1.5), "timeout")
 	#@DanySnowyman
 	tween.interpolate_property($DanySnowyman, "modulate:a", 0, 1, 1, Tween.TRANS_QUAD/
+			Tween.EASE_OUT)
+	tween.interpolate_property($VersionText, "modulate:a", 1, 0, 1, Tween.TRANS_QUAD/
+			Tween.EASE_OUT)
+	tween.interpolate_property($CopyrightText, "modulate:a", 1, 0, 1, Tween.TRANS_QUAD/
 			Tween.EASE_OUT)
 	tween.start()
 	yield(get_tree().create_timer(2), "timeout")

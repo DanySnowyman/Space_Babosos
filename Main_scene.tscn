@@ -41,7 +41,7 @@ func _process(delta):
 	if get_tree().paused == true:
 		if $BlinkTextTimer.is_stopped():
 			$BlinkTextTimer.start(0.5)
-		if Input.is_action_just_released(\"ui_cancel\"):
+		if Input.is_action_just_released(\"ui_select\"):
 			yield(get_tree().create_timer(0.2), \"timeout\")
 			self.hide()
 			$GamePausedText.show()
@@ -338,5 +338,6 @@ volume_db = 8.0
 [node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = 8.0
+
 [connection signal="timeout" from="DelayToScoreScreen" to="." method="_on_DelayToScoreScreen_timeout"]
 [connection signal="timeout" from="PauseScreen/BlinkTextTimer" to="PauseScreen" method="_on_BlinkTextTimer_timeout"]
