@@ -1,4 +1,4 @@
-Space Babosos - A Space Invaders style game made in Godot Engine
+Space Babosos - A Space Invaders style game made with Godot Engine
 Copyright (C) 2020 - Daniel Nevado
 
 This program is free software: you can redistribute it and/or modify
